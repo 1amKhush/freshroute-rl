@@ -1,0 +1,44 @@
+{
+  "model_metadata": {
+    "agent_seed": 7,
+    "config": {
+      "arrival_interval_ms": 12,
+      "episode_steps": 160,
+      "failure_weight": 4.0,
+      "freshness_weight": 2.0,
+      "latency_weight": 1.0
+    },
+    "episodes": 1200,
+    "observation_note": "coarse state aggregation; not a complete Markov state",
+    "purpose": "initial simulator demonstration; not release-qualified",
+    "python": "3.12.3",
+    "scenario": "mixed",
+    "source_sha256": "9660bf7fc7176dcbb33ac909cb926a77ae7a9af950bb5049442183043992b75c",
+    "training_seed_end_exclusive": 1207,
+    "training_seed_start": 7,
+    "training_steps": 192000
+  },
+  "model_sha256": "04cff8bc66986e6cf01ee5c8c03b150c127efa8119015f391927312c59379532",
+  "scenario": "regional-outage",
+  "schema_version": 1,
+  "seed": 110000,
+  "summary": {
+    "availability_rate": 0.79375,
+    "freshness_violation_rate_among_responses": 0.2283464566929134,
+    "mean_response_ms_including_failures": 123.08031286182805,
+    "mean_reward": -1.859233243834455,
+    "mean_staleness_ms_among_responses": 82.01574803149606,
+    "p95_success_response_ms": 229.49658137109253,
+    "requests": 160,
+    "routes": {
+      "Frankfurt": 41,
+      "Mumbai": 34,
+      "Virginia": 85
+    },
+    "sla_rate": 0.6125,
+    "timeout_rate": 0.1625,
+    "unavailable_rate": 0.04375,
+    "unseen_state_rate": 0.06875
+  },
+  "trace_sha256": "3a9992456f785f87d8e79e2bad1ee3381b4c7cd0bd24d23d25b90f8ab07e5135"
+}
