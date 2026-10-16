@@ -1,0 +1,22 @@
+{
+  "name": "traffic-shift",
+  "schema_version": 1,
+  "write_probability": 0.25,
+  "background_ms": 6,
+  "follower_delay_ms": [
+    80,
+    0,
+    160
+  ],
+  "phases": [
+    {
+      "start": 0.5,
+      "end": 1.01,
+      "write_probability": 0.25,
+      "background_ms": 6,
+      "lag_multiplier": 1,
+      "offline_replica": null,
+      "client_region": 2
+    }
+  ]
+}

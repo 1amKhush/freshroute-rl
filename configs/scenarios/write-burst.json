@@ -1,0 +1,22 @@
+{
+  "name": "write-burst",
+  "schema_version": 1,
+  "write_probability": 0.25,
+  "background_ms": 6,
+  "follower_delay_ms": [
+    80,
+    0,
+    160
+  ],
+  "phases": [
+    {
+      "start": 0.25,
+      "end": 0.75,
+      "write_probability": 0.85,
+      "background_ms": 12,
+      "lag_multiplier": 3,
+      "offline_replica": null,
+      "client_region": null
+    }
+  ]
+}

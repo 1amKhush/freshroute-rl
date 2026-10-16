@@ -4,6 +4,8 @@ from bisect import bisect_right
 from dataclasses import asdict, dataclass
 import random
 
+from .scenarios import BUILTINS, load_scenario
+
 
 REGIONS = ("Mumbai", "Frankfurt", "Virginia")
 LEADER = 1
@@ -14,7 +16,7 @@ REQUESTS = (
     ("bounded", 100, 180),
     ("relaxed", 500, 140),
 )
-SCENARIOS = ("balanced", "write-burst", "regional-outage", "traffic-shift")
+SCENARIOS = tuple(BUILTINS)
 
 
 @dataclass(frozen=True)
@@ -44,10 +46,9 @@ class ReplicaEnv:
     """
 
     def __init__(self, config: Config | None = None, scenario: str = "balanced"):
-        if scenario not in SCENARIOS:
-            raise ValueError(f"unknown scenario: {scenario}")
         self.config = config or Config()
-        self.scenario = scenario
+        self.scenario_spec = load_scenario(scenario)
+        self.scenario = self.scenario_spec.name
         self._ready = False
 
     def reset(self, *, seed: int = 0):
@@ -59,7 +60,7 @@ class ReplicaEnv:
         self.applied = [0, 0, 0]
         self.queues = [0.0, 0.0, 0.0]
         self.online = [True, True, True]
-        self.link_lag = [80.0, 0.0, 160.0]
+        self.link_lag = list(self.scenario_spec.follower_delay_ms)
         self.client = self.rng.randrange(3)
         self.request_class = self.rng.randrange(3)
         self._ready = True
@@ -140,7 +141,7 @@ class ReplicaEnv:
     def _advance(self):
         self.clock_ms += self.config.arrival_interval_ms
         progress = self.step_index / self.config.episode_steps
-        burst = self.scenario == "write-burst" and 0.25 <= progress < 0.75
+        phase = self.scenario_spec.at(progress)
         # Draw an identical exogenous frame regardless of the policy's action.
         write_draw = self.rng.random()
         client_draw = self.rng.random()
@@ -149,21 +150,23 @@ class ReplicaEnv:
         frames = [(self.rng.random(), self.rng.random(), self.rng.random()) for _ in range(3)]
         for i, (availability_draw, background_draw, lag_draw) in enumerate(frames):
             if self.scenario == "regional-outage" and i == 0:
-                self.online[i] = not (0.30 <= progress < 0.65)
+                self.online[i] = phase.offline_replica != i
+            elif phase.offline_replica == i:
+                self.online[i] = False
             elif self.online[i]:
                 self.online[i] = availability_draw >= 0.002
             else:
                 self.online[i] = availability_draw < 0.15
             if self.online[i]:
-                background_work = background_draw * (12 if burst else 6)
+                background_work = background_draw * phase.background_ms
                 self.queues[i] = max(
                     0.0, self.queues[i] - self.config.arrival_interval_ms
                 ) + background_work
             self.link_lag[i] = 0.0 if i == LEADER else (
-                (80 if i == 0 else 160) * (3 if burst else 1)
+                self.scenario_spec.follower_delay_ms[i] * phase.lag_multiplier
                 + lag_draw * 30 + self.queues[i] * 0.25
             )
-        if self.online[LEADER] and write_draw < (0.85 if burst else 0.25):
+        if self.online[LEADER] and write_draw < phase.write_probability:
             self.commits.append(self.clock_ms)
         for i in range(3):
             if self.online[i]:
@@ -173,8 +176,8 @@ class ReplicaEnv:
                 self.applied[i] = max(self.applied[i], visible)
         if client_draw < 0.06:
             self.client = next_client
-        if self.scenario == "traffic-shift" and progress >= 0.5:
-            self.client = 2
+        if phase.client_region is not None:
+            self.client = phase.client_region
         self.request_class = next_class
 
     def config_dict(self):

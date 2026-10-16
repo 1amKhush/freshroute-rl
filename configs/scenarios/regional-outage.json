@@ -1,0 +1,22 @@
+{
+  "name": "regional-outage",
+  "schema_version": 1,
+  "write_probability": 0.25,
+  "background_ms": 6,
+  "follower_delay_ms": [
+    80,
+    0,
+    160
+  ],
+  "phases": [
+    {
+      "start": 0.3,
+      "end": 0.65,
+      "write_probability": 0.25,
+      "background_ms": 6,
+      "lag_multiplier": 1,
+      "offline_replica": 0,
+      "client_region": null
+    }
+  ]
+}
