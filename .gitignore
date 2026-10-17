@@ -10,3 +10,7 @@ dist/
 .DS_Store
 artifacts/runs/
 node_modules/
+web/public/demo/
+web/test-results/
+web/playwright-report/
+*.tsbuildinfo
