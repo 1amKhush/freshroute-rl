@@ -92,7 +92,7 @@ def rollout(agent, *, policy=None, seed=100_000, scenario="balanced", config=Non
         records.append({
             "schema_version": 1, "policy": policy, "seed": seed, "scenario": scenario,
             "step": len(records), "observation": observation, "state_key": key,
-            "q_values": agent.values(observation) if policy in ("q-learning", "dqn") else None,
+            "q_values": agent.values(observation) if policy in ('q-learning', 'dqn') else None,
             "state_seen_in_training": key in agent.table if policy == "q-learning" else None,
             "action_training_visits": list(agent.visits.get(key, [0, 0, 0]))
             if policy == "q-learning" else None,
@@ -104,15 +104,21 @@ def rollout(agent, *, policy=None, seed=100_000, scenario="balanced", config=Non
             return records
 
 
-def summarize(records):
+def percentile(values, probability):
+    ordered = sorted(values)
+    return ordered[max(0, (probability * len(ordered) + 99) // 100 - 1)] if ordered else None
+
+
+def summarize(records, *, breakdowns=True):
     count = len(records)
     outcomes = [row["outcome"] for row in records]
     successes = [row for row in outcomes if row["transport_ok"]]
     success_latencies = sorted(row["response_ms"] for row in successes)
     requests = Counter(REGIONS[row["action"]] for row in records)
     q_records = [row for row in records if row["policy"] == "q-learning"]
-    return {
+    summary = {
         "requests": count,
+        "successful_responses": len(successes),
         "mean_reward": statistics.fmean(row["reward"] for row in records),
         "mean_response_ms_including_failures": statistics.fmean(row["response_ms"] for row in outcomes),
         "p95_success_response_ms": success_latencies[max(0, (95 * len(success_latencies) + 99) // 100 - 1)]
@@ -129,13 +135,37 @@ def summarize(records):
         / len(q_records) if q_records else None,
         "routes": {region: requests[region] for region in REGIONS},
     }
+    for label, values in (
+        ('success_response_ms', success_latencies),
+        ('response_ms_including_failures', [row['response_ms'] for row in outcomes]),
+        ('staleness_ms_among_responses', [row['staleness_ms'] for row in successes]),
+        ('version_lag_among_responses', [row['version_lag'] for row in successes]),
+    ):
+        for probability in (50, 95, 99):
+            summary[f'p{probability}_{label}'] = percentile(values, probability)
+    summary['mean_reward_terms'] = {
+        term: statistics.fmean(row['reward_terms'][term] for row in outcomes)
+        for term in ('latency', 'freshness', 'failure')
+    }
+    if breakdowns:
+        for field in ('client_region', 'request_class'):
+            summary[f'by_{field}'] = {
+                str(value): summarize(subset, breakdowns=False)
+                for value in sorted({row['observation'][field] for row in records})
+                if (subset := [row for row in records if row['observation'][field] == value])
+            }
+    return summary
 
 
-def evaluate(agent, *, episodes=8, seed=100_000):
-    if episodes < 1 or seed < 100_000 or seed + episodes > 200_000:
-        raise ValueError("validation seeds must stay in [100000, 200000)")
+def evaluate(agent, *, episodes=8, seed=100_000, split='validation', scenarios=None):
+    bands = {'validation': (100_000, 200_000), 'test': (200_000, 300_000)}
+    if split not in bands:
+        raise ValueError('evaluation split must be validation or test')
+    lower, upper = bands[split]
+    if episodes < 1 or seed < lower or seed + episodes > upper:
+        raise ValueError(f'{split} seeds must stay in [{lower},{upper})')
     results = []
-    for scenario in SCENARIOS:
+    for scenario in scenarios or SCENARIOS:
         for policy in (agent.algorithm, "nearest", "leader", "random"):
             rows = []
             per_episode = []
@@ -145,9 +175,57 @@ def evaluate(agent, *, episodes=8, seed=100_000):
                 per_episode.append({"seed": seed + index, **summarize(records)})
             results.append({"scenario": scenario, "policy": policy, **summarize(rows), "episodes": per_episode})
     return {
-        "schema_version": 1, "split": "validation", "seed_start": seed,
+        "schema_version": 1, "split": split, "seed_start": seed,
         "episodes_per_scenario": episodes,
         "comparison_note": "common exogenous seeds; each policy evolves its own queues",
         "model_metadata": agent.metadata, "evaluation_source_sha256": source_fingerprint(),
         "results": results,
     }
+
+
+def bootstrap_interval(values, *, seed=42, samples=2000):
+    if len(values) < 2:
+        return None
+    rng = random.Random(seed)
+    means = sorted(statistics.fmean(rng.choices(values, k=len(values))) for _ in range(samples))
+    return [means[int(samples * .025)], means[int(samples * .975) - 1]]
+
+
+def evaluate_matrix(models, *, episodes=30, seed=100_100, split='validation'):
+    """Aggregate independent trained agents, not dependent requests, for uncertainty."""
+    from .policies import load_agent
+
+    reports, groups = [], {}
+    common_config = None
+    for path in models:
+        agent = load_agent(path)
+        config = agent.metadata['config']
+        if common_config is not None and config != common_config:
+            raise ValueError('paired matrix requires identical environment and reward configuration')
+        common_config = config
+        report = evaluate(agent, episodes=episodes, seed=seed, split=split)
+        report['model_path'] = str(path)
+        reports.append(report)
+        condition = agent.metadata.get('ablation', 'tabular')
+        if agent.metadata.get('gamma') == 0:
+            condition = 'gamma-zero'
+        for result in report['results']:
+            if result['policy'] != agent.algorithm:
+                continue
+            group = groups.setdefault((condition, result['scenario']), [])
+            if any(row['training_seed'] == agent.metadata['agent_seed'] for row in group):
+                raise ValueError('duplicate training seed within an experiment condition')
+            group.append({'training_seed': agent.metadata['agent_seed'], 'metrics': result})
+    summaries = []
+    for (condition, scenario), rows in groups.items():
+        metrics = {}
+        for metric in ('mean_reward', 'sla_rate', 'availability_rate', 'freshness_violation_rate_among_responses'):
+            values = [row['metrics'][metric] for row in rows if row['metrics'][metric] is not None]
+            metrics[metric] = {'mean': statistics.fmean(values) if values else None,
+                               'bootstrap_95_interval_across_training_seeds': bootstrap_interval(values)}
+        summaries.append({'condition': condition, 'scenario': scenario,
+                          'training_seeds': [row['training_seed'] for row in rows], 'metrics': metrics})
+    return {'schema_version': 1, 'split': split, 'seed_start': seed,
+            'episodes_per_scenario': episodes, 'summaries': summaries, 'runs': reports,
+            'uncertainty_unit': 'independent training seed; percentile bootstrap, descriptive for small N',
+            'source_sha256': source_fingerprint()}

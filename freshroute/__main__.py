@@ -7,7 +7,7 @@ from pathlib import Path
 
 from .agent import QAgent
 from .environment import SCENARIOS
-from .experiments import evaluate, rollout, summarize, train, write_json
+from .experiments import evaluate, evaluate_matrix, rollout, summarize, train, write_json
 from .policies import load_agent
 
 
@@ -43,6 +43,11 @@ def main():
     validation.add_argument("--episodes", type=positive, default=8)
     validation.add_argument("--seed", type=int, default=100_000)
     validation.add_argument("--output", type=Path, default=Path("artifacts/runs/evaluation.json"))
+    matrix = commands.add_parser('evaluate-matrix', help='compare independent trained seeds with uncertainty')
+    matrix.add_argument('--models', type=Path, nargs='+', required=True)
+    matrix.add_argument('--episodes', type=positive, default=30)
+    matrix.add_argument('--seed', type=int, default=100_100)
+    matrix.add_argument('--output', type=Path, required=True)
     replay = commands.add_parser("trace", help="export real decisions for the planned web explorer")
     replay.add_argument("--model", type=Path, default=Path("artifacts/demo/q-agent.json"))
     replay.add_argument("--seed", type=int, default=110_000)
@@ -60,6 +65,9 @@ def main():
             agent = train_dqn(output=args.output, timesteps=args.timesteps, seed=args.seed,
                               ablation=args.ablation, gamma=args.gamma)
             print(f'Saved trained DQN in {args.output}: {agent.metadata["training_steps"]} interactions')
+        elif args.command == 'evaluate-matrix':
+            write_json(args.output, evaluate_matrix(args.models, episodes=args.episodes, seed=args.seed))
+            print(f'Saved independent-training-seed evaluation to {args.output}')
         elif args.command == "evaluate":
             agent = load_agent(args.model)
             report = evaluate(agent, episodes=args.episodes, seed=args.seed)
