@@ -8,6 +8,12 @@ from pathlib import Path
 from .agent import QAgent
 from .environment import SCENARIOS
 from .experiments import evaluate, rollout, summarize, train, write_json
+from .policies import load_agent
+
+
+def model_hash(path):
+    path = Path(path)
+    return hashlib.sha256((path / 'model.zip' if path.is_dir() else path).read_bytes()).hexdigest()
 
 
 def positive(value):
@@ -26,6 +32,12 @@ def main():
     training.add_argument("--seed", type=int, default=7)
     training.add_argument("--scenario", choices=(*SCENARIOS, "mixed"), default="mixed")
     training.add_argument("--output", type=Path, default=Path("artifacts/runs/q-agent.json"))
+    deep = commands.add_parser('train-dqn', help='train a CPU DQN using the rl extra')
+    deep.add_argument('--timesteps', type=positive, default=250_000)
+    deep.add_argument('--seed', type=int, default=7)
+    deep.add_argument('--ablation', choices=('full', 'no-freshness', 'no-queue'), default='full')
+    deep.add_argument('--gamma', type=float, default=.95)
+    deep.add_argument('--output', type=Path, required=True)
     validation = commands.add_parser("evaluate", help="compare a frozen agent against reference policies")
     validation.add_argument("--model", type=Path, default=Path("artifacts/demo/q-agent.json"))
     validation.add_argument("--episodes", type=positive, default=8)
@@ -43,10 +55,15 @@ def main():
             agent.save(args.output)
             write_json(args.output.with_suffix(".training.json"), {"metadata": agent.metadata, "episodes": curve})
             print(f"Saved {args.output}: {len(agent.table)} states, {args.episodes * args.steps} RL transitions")
+        elif args.command == 'train-dqn':
+            from .dqn import train_dqn
+            agent = train_dqn(output=args.output, timesteps=args.timesteps, seed=args.seed,
+                              ablation=args.ablation, gamma=args.gamma)
+            print(f'Saved trained DQN in {args.output}: {agent.metadata["training_steps"]} interactions')
         elif args.command == "evaluate":
-            agent = QAgent.load(args.model)
+            agent = load_agent(args.model)
             report = evaluate(agent, episodes=args.episodes, seed=args.seed)
-            report["model_sha256"] = hashlib.sha256(args.model.read_bytes()).hexdigest()
+            report["model_sha256"] = model_hash(args.model)
             write_json(args.output, report)
             print("scenario          policy       reward    SLA      available")
             for row in report["results"]:
@@ -56,12 +73,12 @@ def main():
         else:
             if not 100_000 <= args.seed < 200_000:
                 raise ValueError("demo trace seeds must stay in [100000, 200000)")
-            agent = QAgent.load(args.model)
+            agent = load_agent(args.model)
             rows = rollout(agent, seed=args.seed, scenario=args.scenario)
             args.output.parent.mkdir(parents=True, exist_ok=True)
             args.output.write_text("".join(json.dumps(row, sort_keys=True, allow_nan=False) + "\n" for row in rows))
             write_json(args.output.with_suffix(".manifest.json"), {
-                "schema_version": 1, "model_sha256": hashlib.sha256(args.model.read_bytes()).hexdigest(),
+                "schema_version": 1, "model_sha256": model_hash(args.model),
                 "trace_sha256": hashlib.sha256(args.output.read_bytes()).hexdigest(),
                 "model_metadata": agent.metadata, "seed": args.seed, "scenario": args.scenario,
                 "summary": summarize(rows),

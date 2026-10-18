@@ -67,7 +67,7 @@ def train(*, episodes=1200, steps=160, seed=7, scenario="mixed"):
 
 
 def policy_action(policy, observation, rng, agent):
-    if policy == "q-learning":
+    if policy in ("q-learning", "dqn"):
         return agent.act(observation)
     if policy == "leader":
         return LEADER
@@ -78,7 +78,8 @@ def policy_action(policy, observation, rng, agent):
     raise ValueError(f"unknown policy: {policy}")
 
 
-def rollout(agent, *, policy="q-learning", seed=100_000, scenario="balanced", config=None):
+def rollout(agent, *, policy=None, seed=100_000, scenario="balanced", config=None):
+    policy = policy or agent.algorithm
     config = config or Config(**agent.metadata["config"])
     env = ReplicaEnv(config, scenario)
     observation, _ = env.reset(seed=seed)
@@ -91,7 +92,7 @@ def rollout(agent, *, policy="q-learning", seed=100_000, scenario="balanced", co
         records.append({
             "schema_version": 1, "policy": policy, "seed": seed, "scenario": scenario,
             "step": len(records), "observation": observation, "state_key": key,
-            "q_values": agent.values(observation) if policy == "q-learning" else None,
+            "q_values": agent.values(observation) if policy in ("q-learning", "dqn") else None,
             "state_seen_in_training": key in agent.table if policy == "q-learning" else None,
             "action_training_visits": list(agent.visits.get(key, [0, 0, 0]))
             if policy == "q-learning" else None,
@@ -135,7 +136,7 @@ def evaluate(agent, *, episodes=8, seed=100_000):
         raise ValueError("validation seeds must stay in [100000, 200000)")
     results = []
     for scenario in SCENARIOS:
-        for policy in ("q-learning", "nearest", "leader", "random"):
+        for policy in (agent.algorithm, "nearest", "leader", "random"):
             rows = []
             per_episode = []
             for index in range(episodes):

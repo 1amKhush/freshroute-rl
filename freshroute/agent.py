@@ -22,6 +22,8 @@ def encode(observation: dict) -> str:
 
 
 class QAgent:
+    algorithm = 'q-learning'
+
     def __init__(self, *, alpha: float = 0.12, gamma: float = 0.95, seed: int = 0):
         if not 0 < alpha <= 1 or not 0 <= gamma < 1:
             raise ValueError("alpha must be in (0, 1]; gamma must be in [0, 1)")
