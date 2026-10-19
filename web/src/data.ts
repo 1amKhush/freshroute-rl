@@ -46,9 +46,10 @@ export async function jsonRequest<T>(path: string, options?: RequestInit): Promi
 }
 
 export async function loadDemo() {
-  const [traceResponse, evaluation] = await Promise.all([
+  const [traceResponse, evaluation, training] = await Promise.all([
     fetch('/demo/decisions.jsonl'), jsonRequest<Evaluation>('/demo/evaluation.json'),
+    jsonRequest<{ episodes: { episode: number; return: number }[] }>('/demo/training.json'),
   ])
   if (!traceResponse.ok) throw new Error('The bundled replay could not be loaded.')
-  return { decisions: parseTrace(await traceResponse.text()), evaluation }
+  return { decisions: parseTrace(await traceResponse.text()), evaluation, training }
 }

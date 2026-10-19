@@ -1,0 +1,33 @@
+import { test, expect } from '@playwright/test'
+
+test('replay controls preserve actual decision values and stop at the end', async ({ page }) => {
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message))
+  await page.goto('/')
+  await expect(page.getByRole('heading', { name: 'Inside this decision' })).toBeVisible()
+  const first = await page.evaluate(async () => JSON.parse((await (await fetch('/demo/decisions.jsonl')).text()).split('\n')[0]))
+  await expect(page.locator('.selected-q strong')).toHaveText(first.q_values[first.action].toFixed(3))
+  await expect(page.locator('.reward-total strong')).toHaveText(first.reward.toFixed(3))
+  await page.getByRole('button', { name: 'Next decision' }).focus()
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.step-label')).toHaveText('#002')
+  await page.getByRole('slider', { name: 'Replay position' }).focus()
+  await page.keyboard.press('End')
+  await expect(page.locator('.step-label')).toHaveText('#160')
+  await expect(page.getByRole('button', { name: 'Next decision' })).toBeDisabled()
+  await expect(page.getByRole('button', { name: '▶ Play' })).toBeDisabled()
+  await page.getByRole('button', { name: 'Reset', exact: true }).click()
+  await expect(page.locator('.step-label')).toHaveText('#001')
+  await page.getByRole('button', { name: 'Training & evaluation' }).click()
+  await expect(page.getByRole('table')).toBeVisible()
+  expect(errors).toEqual([])
+})
+
+test('invalid trace is rejected and mobile layout remains usable', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 }); await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/')
+  await expect(page.locator('.step-label')).toHaveText('#001')
+  await page.getByLabel('Open decision trace').setInputFiles({ name: 'invalid.jsonl', mimeType: 'application/json', buffer: Buffer.from('{"schema_version":99}') })
+  await expect(page.getByRole('alert')).toContainText('Could not open trace')
+  await expect(page.locator('.step-label')).toHaveText('#001')
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy()
+})
