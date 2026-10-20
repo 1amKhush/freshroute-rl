@@ -1,0 +1,2210 @@
+{
+  "episodes": [
+    {
+      "episode": 1,
+      "epsilon": 0.9956842857142858,
+      "length": 160,
+      "return": -434.805856,
+      "timesteps": 160
+    },
+    {
+      "episode": 2,
+      "epsilon": 0.9913414285714285,
+      "length": 160,
+      "return": -456.532818,
+      "timesteps": 320
+    },
+    {
+      "episode": 3,
+      "epsilon": 0.9869985714285714,
+      "length": 160,
+      "return": -435.296004,
+      "timesteps": 480
+    },
+    {
+      "episode": 4,
+      "epsilon": 0.9826557142857143,
+      "length": 160,
+      "return": -564.23852,
+      "timesteps": 640
+    },
+    {
+      "episode": 5,
+      "epsilon": 0.9783128571428572,
+      "length": 160,
+      "return": -466.229522,
+      "timesteps": 800
+    },
+    {
+      "episode": 6,
+      "epsilon": 0.97397,
+      "length": 160,
+      "return": -442.704009,
+      "timesteps": 960
+    },
+    {
+      "episode": 7,
+      "epsilon": 0.9696271428571429,
+      "length": 160,
+      "return": -496.932153,
+      "timesteps": 1120
+    },
+    {
+      "episode": 8,
+      "epsilon": 0.9652842857142856,
+      "length": 160,
+      "return": -349.425298,
+      "timesteps": 1280
+    },
+    {
+      "episode": 9,
+      "epsilon": 0.9609414285714285,
+      "length": 160,
+      "return": -413.190922,
+      "timesteps": 1440
+    },
+    {
+      "episode": 10,
+      "epsilon": 0.9565985714285714,
+      "length": 160,
+      "return": -435.619761,
+      "timesteps": 1600
+    },
+    {
+      "episode": 11,
+      "epsilon": 0.9522557142857143,
+      "length": 160,
+      "return": -423.575369,
+      "timesteps": 1760
+    },
+    {
+      "episode": 12,
+      "epsilon": 0.9479128571428572,
+      "length": 160,
+      "return": -419.396335,
+      "timesteps": 1920
+    },
+    {
+      "episode": 13,
+      "epsilon": 0.94357,
+      "length": 160,
+      "return": -365.935473,
+      "timesteps": 2080
+    },
+    {
+      "episode": 14,
+      "epsilon": 0.9392271428571428,
+      "length": 160,
+      "return": -470.871997,
+      "timesteps": 2240
+    },
+    {
+      "episode": 15,
+      "epsilon": 0.9348842857142857,
+      "length": 160,
+      "return": -399.388668,
+      "timesteps": 2400
+    },
+    {
+      "episode": 16,
+      "epsilon": 0.9305414285714286,
+      "length": 160,
+      "return": -395.399768,
+      "timesteps": 2560
+    },
+    {
+      "episode": 17,
+      "epsilon": 0.9261985714285714,
+      "length": 160,
+      "return": -498.945268,
+      "timesteps": 2720
+    },
+    {
+      "episode": 18,
+      "epsilon": 0.9218557142857143,
+      "length": 160,
+      "return": -476.035305,
+      "timesteps": 2880
+    },
+    {
+      "episode": 19,
+      "epsilon": 0.917512857142857,
+      "length": 160,
+      "return": -513.889245,
+      "timesteps": 3040
+    },
+    {
+      "episode": 20,
+      "epsilon": 0.9131699999999999,
+      "length": 160,
+      "return": -379.900831,
+      "timesteps": 3200
+    },
+    {
+      "episode": 21,
+      "epsilon": 0.9088271428571428,
+      "length": 160,
+      "return": -362.825165,
+      "timesteps": 3360
+    },
+    {
+      "episode": 22,
+      "epsilon": 0.9044842857142857,
+      "length": 160,
+      "return": -376.514289,
+      "timesteps": 3520
+    },
+    {
+      "episode": 23,
+      "epsilon": 0.9001414285714286,
+      "length": 160,
+      "return": -433.597619,
+      "timesteps": 3680
+    },
+    {
+      "episode": 24,
+      "epsilon": 0.8957985714285714,
+      "length": 160,
+      "return": -389.435507,
+      "timesteps": 3840
+    },
+    {
+      "episode": 25,
+      "epsilon": 0.8914557142857144,
+      "length": 160,
+      "return": -296.764171,
+      "timesteps": 4000
+    },
+    {
+      "episode": 26,
+      "epsilon": 0.8871128571428571,
+      "length": 160,
+      "return": -401.075096,
+      "timesteps": 4160
+    },
+    {
+      "episode": 27,
+      "epsilon": 0.8827699999999999,
+      "length": 160,
+      "return": -448.887088,
+      "timesteps": 4320
+    },
+    {
+      "episode": 28,
+      "epsilon": 0.8784271428571429,
+      "length": 160,
+      "return": -375.478583,
+      "timesteps": 4480
+    },
+    {
+      "episode": 29,
+      "epsilon": 0.8740842857142858,
+      "length": 160,
+      "return": -404.024922,
+      "timesteps": 4640
+    },
+    {
+      "episode": 30,
+      "epsilon": 0.8697414285714287,
+      "length": 160,
+      "return": -458.721887,
+      "timesteps": 4800
+    },
+    {
+      "episode": 31,
+      "epsilon": 0.8653985714285714,
+      "length": 160,
+      "return": -407.738742,
+      "timesteps": 4960
+    },
+    {
+      "episode": 32,
+      "epsilon": 0.8610557142857143,
+      "length": 160,
+      "return": -394.064941,
+      "timesteps": 5120
+    },
+    {
+      "episode": 33,
+      "epsilon": 0.8567128571428572,
+      "length": 160,
+      "return": -524.106695,
+      "timesteps": 5280
+    },
+    {
+      "episode": 34,
+      "epsilon": 0.8523700000000001,
+      "length": 160,
+      "return": -692.017734,
+      "timesteps": 5440
+    },
+    {
+      "episode": 35,
+      "epsilon": 0.8480271428571429,
+      "length": 160,
+      "return": -565.463204,
+      "timesteps": 5600
+    },
+    {
+      "episode": 36,
+      "epsilon": 0.8436842857142857,
+      "length": 160,
+      "return": -507.04226,
+      "timesteps": 5760
+    },
+    {
+      "episode": 37,
+      "epsilon": 0.8393414285714285,
+      "length": 160,
+      "return": -489.862833,
+      "timesteps": 5920
+    },
+    {
+      "episode": 38,
+      "epsilon": 0.8349985714285714,
+      "length": 160,
+      "return": -529.762846,
+      "timesteps": 6080
+    },
+    {
+      "episode": 39,
+      "epsilon": 0.8306557142857143,
+      "length": 160,
+      "return": -618.571763,
+      "timesteps": 6240
+    },
+    {
+      "episode": 40,
+      "epsilon": 0.8263128571428572,
+      "length": 160,
+      "return": -582.92319,
+      "timesteps": 6400
+    },
+    {
+      "episode": 41,
+      "epsilon": 0.8219700000000001,
+      "length": 160,
+      "return": -570.428882,
+      "timesteps": 6560
+    },
+    {
+      "episode": 42,
+      "epsilon": 0.8176271428571429,
+      "length": 160,
+      "return": -501.145007,
+      "timesteps": 6720
+    },
+    {
+      "episode": 43,
+      "epsilon": 0.8132842857142857,
+      "length": 160,
+      "return": -456.066843,
+      "timesteps": 6880
+    },
+    {
+      "episode": 44,
+      "epsilon": 0.8089414285714286,
+      "length": 160,
+      "return": -558.300653,
+      "timesteps": 7040
+    },
+    {
+      "episode": 45,
+      "epsilon": 0.8045985714285715,
+      "length": 160,
+      "return": -476.144645,
+      "timesteps": 7200
+    },
+    {
+      "episode": 46,
+      "epsilon": 0.8002557142857143,
+      "length": 160,
+      "return": -378.689386,
+      "timesteps": 7360
+    },
+    {
+      "episode": 47,
+      "epsilon": 0.7959128571428572,
+      "length": 160,
+      "return": -368.546836,
+      "timesteps": 7520
+    },
+    {
+      "episode": 48,
+      "epsilon": 0.7915699999999999,
+      "length": 160,
+      "return": -495.481255,
+      "timesteps": 7680
+    },
+    {
+      "episode": 49,
+      "epsilon": 0.7872271428571428,
+      "length": 160,
+      "return": -368.86706,
+      "timesteps": 7840
+    },
+    {
+      "episode": 50,
+      "epsilon": 0.7828842857142857,
+      "length": 160,
+      "return": -471.874352,
+      "timesteps": 8000
+    },
+    {
+      "episode": 51,
+      "epsilon": 0.7785414285714286,
+      "length": 160,
+      "return": -400.989735,
+      "timesteps": 8160
+    },
+    {
+      "episode": 52,
+      "epsilon": 0.7741985714285714,
+      "length": 160,
+      "return": -388.055493,
+      "timesteps": 8320
+    },
+    {
+      "episode": 53,
+      "epsilon": 0.7698557142857142,
+      "length": 160,
+      "return": -443.658578,
+      "timesteps": 8480
+    },
+    {
+      "episode": 54,
+      "epsilon": 0.7655128571428572,
+      "length": 160,
+      "return": -350.286818,
+      "timesteps": 8640
+    },
+    {
+      "episode": 55,
+      "epsilon": 0.7611699999999999,
+      "length": 160,
+      "return": -386.836755,
+      "timesteps": 8800
+    },
+    {
+      "episode": 56,
+      "epsilon": 0.7568271428571428,
+      "length": 160,
+      "return": -401.758123,
+      "timesteps": 8960
+    },
+    {
+      "episode": 57,
+      "epsilon": 0.7524842857142857,
+      "length": 160,
+      "return": -437.965321,
+      "timesteps": 9120
+    },
+    {
+      "episode": 58,
+      "epsilon": 0.7481414285714286,
+      "length": 160,
+      "return": -474.395642,
+      "timesteps": 9280
+    },
+    {
+      "episode": 59,
+      "epsilon": 0.7437985714285715,
+      "length": 160,
+      "return": -500.238686,
+      "timesteps": 9440
+    },
+    {
+      "episode": 60,
+      "epsilon": 0.7394557142857143,
+      "length": 160,
+      "return": -334.042915,
+      "timesteps": 9600
+    },
+    {
+      "episode": 61,
+      "epsilon": 0.7351128571428571,
+      "length": 160,
+      "return": -371.450793,
+      "timesteps": 9760
+    },
+    {
+      "episode": 62,
+      "epsilon": 0.7307699999999999,
+      "length": 160,
+      "return": -451.257059,
+      "timesteps": 9920
+    },
+    {
+      "episode": 63,
+      "epsilon": 0.7264271428571429,
+      "length": 160,
+      "return": -466.663447,
+      "timesteps": 10080
+    },
+    {
+      "episode": 64,
+      "epsilon": 0.7220842857142857,
+      "length": 160,
+      "return": -437.485361,
+      "timesteps": 10240
+    },
+    {
+      "episode": 65,
+      "epsilon": 0.7177414285714285,
+      "length": 160,
+      "return": -299.771327,
+      "timesteps": 10400
+    },
+    {
+      "episode": 66,
+      "epsilon": 0.7133985714285713,
+      "length": 160,
+      "return": -327.291219,
+      "timesteps": 10560
+    },
+    {
+      "episode": 67,
+      "epsilon": 0.7090557142857142,
+      "length": 160,
+      "return": -472.537336,
+      "timesteps": 10720
+    },
+    {
+      "episode": 68,
+      "epsilon": 0.7047128571428571,
+      "length": 160,
+      "return": -268.731666,
+      "timesteps": 10880
+    },
+    {
+      "episode": 69,
+      "epsilon": 0.70037,
+      "length": 160,
+      "return": -292.761022,
+      "timesteps": 11040
+    },
+    {
+      "episode": 70,
+      "epsilon": 0.6960271428571427,
+      "length": 160,
+      "return": -377.668356,
+      "timesteps": 11200
+    },
+    {
+      "episode": 71,
+      "epsilon": 0.6916842857142858,
+      "length": 160,
+      "return": -447.305555,
+      "timesteps": 11360
+    },
+    {
+      "episode": 72,
+      "epsilon": 0.6873414285714285,
+      "length": 160,
+      "return": -314.074607,
+      "timesteps": 11520
+    },
+    {
+      "episode": 73,
+      "epsilon": 0.6829985714285713,
+      "length": 160,
+      "return": -311.988531,
+      "timesteps": 11680
+    },
+    {
+      "episode": 74,
+      "epsilon": 0.6786557142857144,
+      "length": 160,
+      "return": -494.658231,
+      "timesteps": 11840
+    },
+    {
+      "episode": 75,
+      "epsilon": 0.6743128571428572,
+      "length": 160,
+      "return": -350.916088,
+      "timesteps": 12000
+    },
+    {
+      "episode": 76,
+      "epsilon": 0.6699700000000001,
+      "length": 160,
+      "return": -397.645536,
+      "timesteps": 12160
+    },
+    {
+      "episode": 77,
+      "epsilon": 0.6656271428571428,
+      "length": 160,
+      "return": -396.83749,
+      "timesteps": 12320
+    },
+    {
+      "episode": 78,
+      "epsilon": 0.6612842857142857,
+      "length": 160,
+      "return": -294.893616,
+      "timesteps": 12480
+    },
+    {
+      "episode": 79,
+      "epsilon": 0.6569414285714286,
+      "length": 160,
+      "return": -332.412034,
+      "timesteps": 12640
+    },
+    {
+      "episode": 80,
+      "epsilon": 0.6525985714285714,
+      "length": 160,
+      "return": -314.427326,
+      "timesteps": 12800
+    },
+    {
+      "episode": 81,
+      "epsilon": 0.6482557142857144,
+      "length": 160,
+      "return": -285.876937,
+      "timesteps": 12960
+    },
+    {
+      "episode": 82,
+      "epsilon": 0.6439128571428571,
+      "length": 160,
+      "return": -379.102626,
+      "timesteps": 13120
+    },
+    {
+      "episode": 83,
+      "epsilon": 0.6395700000000001,
+      "length": 160,
+      "return": -397.419997,
+      "timesteps": 13280
+    },
+    {
+      "episode": 84,
+      "epsilon": 0.6352271428571429,
+      "length": 160,
+      "return": -394.494956,
+      "timesteps": 13440
+    },
+    {
+      "episode": 85,
+      "epsilon": 0.6308842857142858,
+      "length": 160,
+      "return": -323.45251,
+      "timesteps": 13600
+    },
+    {
+      "episode": 86,
+      "epsilon": 0.6265414285714286,
+      "length": 160,
+      "return": -363.666932,
+      "timesteps": 13760
+    },
+    {
+      "episode": 87,
+      "epsilon": 0.6221985714285714,
+      "length": 160,
+      "return": -434.71796,
+      "timesteps": 13920
+    },
+    {
+      "episode": 88,
+      "epsilon": 0.6178557142857144,
+      "length": 160,
+      "return": -320.176237,
+      "timesteps": 14080
+    },
+    {
+      "episode": 89,
+      "epsilon": 0.6135128571428571,
+      "length": 160,
+      "return": -455.014662,
+      "timesteps": 14240
+    },
+    {
+      "episode": 90,
+      "epsilon": 0.60917,
+      "length": 160,
+      "return": -288.978044,
+      "timesteps": 14400
+    },
+    {
+      "episode": 91,
+      "epsilon": 0.6048271428571428,
+      "length": 160,
+      "return": -340.390617,
+      "timesteps": 14560
+    },
+    {
+      "episode": 92,
+      "epsilon": 0.6004842857142858,
+      "length": 160,
+      "return": -464.385125,
+      "timesteps": 14720
+    },
+    {
+      "episode": 93,
+      "epsilon": 0.5961414285714286,
+      "length": 160,
+      "return": -444.868524,
+      "timesteps": 14880
+    },
+    {
+      "episode": 94,
+      "epsilon": 0.5917985714285714,
+      "length": 160,
+      "return": -282.084312,
+      "timesteps": 15040
+    },
+    {
+      "episode": 95,
+      "epsilon": 0.5874557142857144,
+      "length": 160,
+      "return": -261.910665,
+      "timesteps": 15200
+    },
+    {
+      "episode": 96,
+      "epsilon": 0.5831128571428571,
+      "length": 160,
+      "return": -286.733801,
+      "timesteps": 15360
+    },
+    {
+      "episode": 97,
+      "epsilon": 0.57877,
+      "length": 160,
+      "return": -273.09572,
+      "timesteps": 15520
+    },
+    {
+      "episode": 98,
+      "epsilon": 0.5744271428571428,
+      "length": 160,
+      "return": -446.536703,
+      "timesteps": 15680
+    },
+    {
+      "episode": 99,
+      "epsilon": 0.5700842857142856,
+      "length": 160,
+      "return": -310.702768,
+      "timesteps": 15840
+    },
+    {
+      "episode": 100,
+      "epsilon": 0.5657414285714286,
+      "length": 160,
+      "return": -278.114827,
+      "timesteps": 16000
+    },
+    {
+      "episode": 101,
+      "epsilon": 0.5613985714285714,
+      "length": 160,
+      "return": -443.143931,
+      "timesteps": 16160
+    },
+    {
+      "episode": 102,
+      "epsilon": 0.5570557142857142,
+      "length": 160,
+      "return": -410.128491,
+      "timesteps": 16320
+    },
+    {
+      "episode": 103,
+      "epsilon": 0.5527128571428572,
+      "length": 160,
+      "return": -407.560953,
+      "timesteps": 16480
+    },
+    {
+      "episode": 104,
+      "epsilon": 0.5483699999999998,
+      "length": 160,
+      "return": -281.323834,
+      "timesteps": 16640
+    },
+    {
+      "episode": 105,
+      "epsilon": 0.5440271428571429,
+      "length": 160,
+      "return": -425.04454,
+      "timesteps": 16800
+    },
+    {
+      "episode": 106,
+      "epsilon": 0.5396842857142856,
+      "length": 160,
+      "return": -243.348271,
+      "timesteps": 16960
+    },
+    {
+      "episode": 107,
+      "epsilon": 0.5353414285714285,
+      "length": 160,
+      "return": -316.847951,
+      "timesteps": 17120
+    },
+    {
+      "episode": 108,
+      "epsilon": 0.5309985714285714,
+      "length": 160,
+      "return": -320.678189,
+      "timesteps": 17280
+    },
+    {
+      "episode": 109,
+      "epsilon": 0.5266557142857143,
+      "length": 160,
+      "return": -276.00411,
+      "timesteps": 17440
+    },
+    {
+      "episode": 110,
+      "epsilon": 0.5223128571428572,
+      "length": 160,
+      "return": -342.177018,
+      "timesteps": 17600
+    },
+    {
+      "episode": 111,
+      "epsilon": 0.5179699999999999,
+      "length": 160,
+      "return": -302.877708,
+      "timesteps": 17760
+    },
+    {
+      "episode": 112,
+      "epsilon": 0.513627142857143,
+      "length": 160,
+      "return": -438.873689,
+      "timesteps": 17920
+    },
+    {
+      "episode": 113,
+      "epsilon": 0.5092842857142856,
+      "length": 160,
+      "return": -412.284931,
+      "timesteps": 18080
+    },
+    {
+      "episode": 114,
+      "epsilon": 0.5049414285714285,
+      "length": 160,
+      "return": -302.195752,
+      "timesteps": 18240
+    },
+    {
+      "episode": 115,
+      "epsilon": 0.5005985714285714,
+      "length": 160,
+      "return": -373.863393,
+      "timesteps": 18400
+    },
+    {
+      "episode": 116,
+      "epsilon": 0.49625571428571413,
+      "length": 160,
+      "return": -318.603785,
+      "timesteps": 18560
+    },
+    {
+      "episode": 117,
+      "epsilon": 0.49191285714285715,
+      "length": 160,
+      "return": -305.212681,
+      "timesteps": 18720
+    },
+    {
+      "episode": 118,
+      "epsilon": 0.48756999999999995,
+      "length": 160,
+      "return": -293.702365,
+      "timesteps": 18880
+    },
+    {
+      "episode": 119,
+      "epsilon": 0.48322714285714286,
+      "length": 160,
+      "return": -429.391806,
+      "timesteps": 19040
+    },
+    {
+      "episode": 120,
+      "epsilon": 0.47888428571428576,
+      "length": 160,
+      "return": -238.424206,
+      "timesteps": 19200
+    },
+    {
+      "episode": 121,
+      "epsilon": 0.47454142857142845,
+      "length": 160,
+      "return": -269.469296,
+      "timesteps": 19360
+    },
+    {
+      "episode": 122,
+      "epsilon": 0.47019857142857147,
+      "length": 160,
+      "return": -280.677051,
+      "timesteps": 19520
+    },
+    {
+      "episode": 123,
+      "epsilon": 0.46585571428571415,
+      "length": 160,
+      "return": -251.814234,
+      "timesteps": 19680
+    },
+    {
+      "episode": 124,
+      "epsilon": 0.46151285714285706,
+      "length": 160,
+      "return": -230.335264,
+      "timesteps": 19840
+    },
+    {
+      "episode": 125,
+      "epsilon": 0.4571700000000001,
+      "length": 160,
+      "return": -310.165122,
+      "timesteps": 20000
+    },
+    {
+      "episode": 126,
+      "epsilon": 0.4528271428571429,
+      "length": 160,
+      "return": -354.373727,
+      "timesteps": 20160
+    },
+    {
+      "episode": 127,
+      "epsilon": 0.4484842857142858,
+      "length": 160,
+      "return": -282.940789,
+      "timesteps": 20320
+    },
+    {
+      "episode": 128,
+      "epsilon": 0.44414142857142846,
+      "length": 160,
+      "return": -270.331906,
+      "timesteps": 20480
+    },
+    {
+      "episode": 129,
+      "epsilon": 0.4397985714285715,
+      "length": 160,
+      "return": -274.331965,
+      "timesteps": 20640
+    },
+    {
+      "episode": 130,
+      "epsilon": 0.4354557142857143,
+      "length": 160,
+      "return": -346.139584,
+      "timesteps": 20800
+    },
+    {
+      "episode": 131,
+      "epsilon": 0.4311128571428571,
+      "length": 160,
+      "return": -254.583854,
+      "timesteps": 20960
+    },
+    {
+      "episode": 132,
+      "epsilon": 0.42677,
+      "length": 160,
+      "return": -497.980351,
+      "timesteps": 21120
+    },
+    {
+      "episode": 133,
+      "epsilon": 0.4224271428571428,
+      "length": 160,
+      "return": -219.168899,
+      "timesteps": 21280
+    },
+    {
+      "episode": 134,
+      "epsilon": 0.4180842857142858,
+      "length": 160,
+      "return": -209.301176,
+      "timesteps": 21440
+    },
+    {
+      "episode": 135,
+      "epsilon": 0.4137414285714286,
+      "length": 160,
+      "return": -261.768258,
+      "timesteps": 21600
+    },
+    {
+      "episode": 136,
+      "epsilon": 0.4093985714285714,
+      "length": 160,
+      "return": -306.066885,
+      "timesteps": 21760
+    },
+    {
+      "episode": 137,
+      "epsilon": 0.4050557142857143,
+      "length": 160,
+      "return": -389.161749,
+      "timesteps": 21920
+    },
+    {
+      "episode": 138,
+      "epsilon": 0.4007128571428572,
+      "length": 160,
+      "return": -400.377754,
+      "timesteps": 22080
+    },
+    {
+      "episode": 139,
+      "epsilon": 0.39637,
+      "length": 160,
+      "return": -321.24283,
+      "timesteps": 22240
+    },
+    {
+      "episode": 140,
+      "epsilon": 0.3920271428571428,
+      "length": 160,
+      "return": -236.281443,
+      "timesteps": 22400
+    },
+    {
+      "episode": 141,
+      "epsilon": 0.3876842857142856,
+      "length": 160,
+      "return": -226.616289,
+      "timesteps": 22560
+    },
+    {
+      "episode": 142,
+      "epsilon": 0.3833414285714286,
+      "length": 160,
+      "return": -305.062242,
+      "timesteps": 22720
+    },
+    {
+      "episode": 143,
+      "epsilon": 0.3789985714285715,
+      "length": 160,
+      "return": -298.906169,
+      "timesteps": 22880
+    },
+    {
+      "episode": 144,
+      "epsilon": 0.3746557142857143,
+      "length": 160,
+      "return": -427.865276,
+      "timesteps": 23040
+    },
+    {
+      "episode": 145,
+      "epsilon": 0.370312857142857,
+      "length": 160,
+      "return": -343.276207,
+      "timesteps": 23200
+    },
+    {
+      "episode": 146,
+      "epsilon": 0.36597000000000013,
+      "length": 160,
+      "return": -241.935106,
+      "timesteps": 23360
+    },
+    {
+      "episode": 147,
+      "epsilon": 0.3616271428571428,
+      "length": 160,
+      "return": -315.698694,
+      "timesteps": 23520
+    },
+    {
+      "episode": 148,
+      "epsilon": 0.3572842857142857,
+      "length": 160,
+      "return": -272.753204,
+      "timesteps": 23680
+    },
+    {
+      "episode": 149,
+      "epsilon": 0.3529414285714285,
+      "length": 160,
+      "return": -252.105636,
+      "timesteps": 23840
+    },
+    {
+      "episode": 150,
+      "epsilon": 0.3485985714285713,
+      "length": 160,
+      "return": -432.126636,
+      "timesteps": 24000
+    },
+    {
+      "episode": 151,
+      "epsilon": 0.34425571428571433,
+      "length": 160,
+      "return": -412.254383,
+      "timesteps": 24160
+    },
+    {
+      "episode": 152,
+      "epsilon": 0.3399128571428571,
+      "length": 160,
+      "return": -254.962558,
+      "timesteps": 24320
+    },
+    {
+      "episode": 153,
+      "epsilon": 0.3355699999999999,
+      "length": 160,
+      "return": -228.872838,
+      "timesteps": 24480
+    },
+    {
+      "episode": 154,
+      "epsilon": 0.33122714285714283,
+      "length": 160,
+      "return": -194.415332,
+      "timesteps": 24640
+    },
+    {
+      "episode": 155,
+      "epsilon": 0.32688428571428574,
+      "length": 160,
+      "return": -243.203451,
+      "timesteps": 24800
+    },
+    {
+      "episode": 156,
+      "epsilon": 0.32254142857142865,
+      "length": 160,
+      "return": -387.908805,
+      "timesteps": 24960
+    },
+    {
+      "episode": 157,
+      "epsilon": 0.31819857142857133,
+      "length": 160,
+      "return": -360.806354,
+      "timesteps": 25120
+    },
+    {
+      "episode": 158,
+      "epsilon": 0.31385571428571424,
+      "length": 160,
+      "return": -322.641518,
+      "timesteps": 25280
+    },
+    {
+      "episode": 159,
+      "epsilon": 0.30951285714285715,
+      "length": 160,
+      "return": -444.895702,
+      "timesteps": 25440
+    },
+    {
+      "episode": 160,
+      "epsilon": 0.30517000000000005,
+      "length": 160,
+      "return": -177.113503,
+      "timesteps": 25600
+    },
+    {
+      "episode": 161,
+      "epsilon": 0.30082714285714285,
+      "length": 160,
+      "return": -318.369508,
+      "timesteps": 25760
+    },
+    {
+      "episode": 162,
+      "epsilon": 0.29648428571428576,
+      "length": 160,
+      "return": -257.961681,
+      "timesteps": 25920
+    },
+    {
+      "episode": 163,
+      "epsilon": 0.29214142857142844,
+      "length": 160,
+      "return": -235.581577,
+      "timesteps": 26080
+    },
+    {
+      "episode": 164,
+      "epsilon": 0.28779857142857135,
+      "length": 160,
+      "return": -187.275352,
+      "timesteps": 26240
+    },
+    {
+      "episode": 165,
+      "epsilon": 0.28345571428571437,
+      "length": 160,
+      "return": -418.02019,
+      "timesteps": 26400
+    },
+    {
+      "episode": 166,
+      "epsilon": 0.27911285714285716,
+      "length": 160,
+      "return": -369.544541,
+      "timesteps": 26560
+    },
+    {
+      "episode": 167,
+      "epsilon": 0.27477000000000007,
+      "length": 160,
+      "return": -383.703883,
+      "timesteps": 26720
+    },
+    {
+      "episode": 168,
+      "epsilon": 0.27042714285714287,
+      "length": 160,
+      "return": -237.50645,
+      "timesteps": 26880
+    },
+    {
+      "episode": 169,
+      "epsilon": 0.26608428571428566,
+      "length": 160,
+      "return": -288.417147,
+      "timesteps": 27040
+    },
+    {
+      "episode": 170,
+      "epsilon": 0.26174142857142846,
+      "length": 160,
+      "return": -184.414148,
+      "timesteps": 27200
+    },
+    {
+      "episode": 171,
+      "epsilon": 0.25739857142857137,
+      "length": 160,
+      "return": -212.303091,
+      "timesteps": 27360
+    },
+    {
+      "episode": 172,
+      "epsilon": 0.2530557142857144,
+      "length": 160,
+      "return": -179.830097,
+      "timesteps": 27520
+    },
+    {
+      "episode": 173,
+      "epsilon": 0.24871285714285718,
+      "length": 160,
+      "return": -230.239663,
+      "timesteps": 27680
+    },
+    {
+      "episode": 174,
+      "epsilon": 0.24436999999999998,
+      "length": 160,
+      "return": -350.726669,
+      "timesteps": 27840
+    },
+    {
+      "episode": 175,
+      "epsilon": 0.24002714285714277,
+      "length": 160,
+      "return": -200.694582,
+      "timesteps": 28000
+    },
+    {
+      "episode": 176,
+      "epsilon": 0.23568428571428568,
+      "length": 160,
+      "return": -409.234917,
+      "timesteps": 28160
+    },
+    {
+      "episode": 177,
+      "epsilon": 0.23134142857142848,
+      "length": 160,
+      "return": -203.737203,
+      "timesteps": 28320
+    },
+    {
+      "episode": 178,
+      "epsilon": 0.2269985714285715,
+      "length": 160,
+      "return": -453.260153,
+      "timesteps": 28480
+    },
+    {
+      "episode": 179,
+      "epsilon": 0.2226557142857143,
+      "length": 160,
+      "return": -199.280966,
+      "timesteps": 28640
+    },
+    {
+      "episode": 180,
+      "epsilon": 0.2183128571428571,
+      "length": 160,
+      "return": -394.833009,
+      "timesteps": 28800
+    },
+    {
+      "episode": 181,
+      "epsilon": 0.21397,
+      "length": 160,
+      "return": -172.665971,
+      "timesteps": 28960
+    },
+    {
+      "episode": 182,
+      "epsilon": 0.2096271428571428,
+      "length": 160,
+      "return": -188.881684,
+      "timesteps": 29120
+    },
+    {
+      "episode": 183,
+      "epsilon": 0.2052842857142858,
+      "length": 160,
+      "return": -215.547567,
+      "timesteps": 29280
+    },
+    {
+      "episode": 184,
+      "epsilon": 0.2009414285714286,
+      "length": 160,
+      "return": -240.70766,
+      "timesteps": 29440
+    },
+    {
+      "episode": 185,
+      "epsilon": 0.1965985714285715,
+      "length": 160,
+      "return": -178.246767,
+      "timesteps": 29600
+    },
+    {
+      "episode": 186,
+      "epsilon": 0.1922557142857142,
+      "length": 160,
+      "return": -187.549351,
+      "timesteps": 29760
+    },
+    {
+      "episode": 187,
+      "epsilon": 0.1879128571428571,
+      "length": 160,
+      "return": -173.786963,
+      "timesteps": 29920
+    },
+    {
+      "episode": 188,
+      "epsilon": 0.18357,
+      "length": 160,
+      "return": -201.93083,
+      "timesteps": 30080
+    },
+    {
+      "episode": 189,
+      "epsilon": 0.1792271428571428,
+      "length": 160,
+      "return": -308.510214,
+      "timesteps": 30240
+    },
+    {
+      "episode": 190,
+      "epsilon": 0.17488428571428583,
+      "length": 160,
+      "return": -312.852732,
+      "timesteps": 30400
+    },
+    {
+      "episode": 191,
+      "epsilon": 0.17054142857142862,
+      "length": 160,
+      "return": -188.934867,
+      "timesteps": 30560
+    },
+    {
+      "episode": 192,
+      "epsilon": 0.16619857142857142,
+      "length": 160,
+      "return": -426.62305,
+      "timesteps": 30720
+    },
+    {
+      "episode": 193,
+      "epsilon": 0.16185571428571421,
+      "length": 160,
+      "return": -198.200283,
+      "timesteps": 30880
+    },
+    {
+      "episode": 194,
+      "epsilon": 0.15751285714285712,
+      "length": 160,
+      "return": -191.687853,
+      "timesteps": 31040
+    },
+    {
+      "episode": 195,
+      "epsilon": 0.15316999999999992,
+      "length": 160,
+      "return": -172.105717,
+      "timesteps": 31200
+    },
+    {
+      "episode": 196,
+      "epsilon": 0.14882714285714294,
+      "length": 160,
+      "return": -281.10503,
+      "timesteps": 31360
+    },
+    {
+      "episode": 197,
+      "epsilon": 0.14448428571428573,
+      "length": 160,
+      "return": -150.156926,
+      "timesteps": 31520
+    },
+    {
+      "episode": 198,
+      "epsilon": 0.14014142857142853,
+      "length": 160,
+      "return": -343.529234,
+      "timesteps": 31680
+    },
+    {
+      "episode": 199,
+      "epsilon": 0.13579857142857144,
+      "length": 160,
+      "return": -365.062027,
+      "timesteps": 31840
+    },
+    {
+      "episode": 200,
+      "epsilon": 0.13145571428571423,
+      "length": 160,
+      "return": -365.330872,
+      "timesteps": 32000
+    },
+    {
+      "episode": 201,
+      "epsilon": 0.12711285714285725,
+      "length": 160,
+      "return": -440.233271,
+      "timesteps": 32160
+    },
+    {
+      "episode": 202,
+      "epsilon": 0.12276999999999993,
+      "length": 160,
+      "return": -261.816471,
+      "timesteps": 32320
+    },
+    {
+      "episode": 203,
+      "epsilon": 0.11842714285714273,
+      "length": 160,
+      "return": -173.796422,
+      "timesteps": 32480
+    },
+    {
+      "episode": 204,
+      "epsilon": 0.11408428571428575,
+      "length": 160,
+      "return": -384.328796,
+      "timesteps": 32640
+    },
+    {
+      "episode": 205,
+      "epsilon": 0.10974142857142855,
+      "length": 160,
+      "return": -432.023543,
+      "timesteps": 32800
+    },
+    {
+      "episode": 206,
+      "epsilon": 0.10539857142857145,
+      "length": 160,
+      "return": -134.608498,
+      "timesteps": 32960
+    },
+    {
+      "episode": 207,
+      "epsilon": 0.10105571428571425,
+      "length": 160,
+      "return": -365.488855,
+      "timesteps": 33120
+    },
+    {
+      "episode": 208,
+      "epsilon": 0.09671285714285727,
+      "length": 160,
+      "return": -157.252424,
+      "timesteps": 33280
+    },
+    {
+      "episode": 209,
+      "epsilon": 0.09236999999999984,
+      "length": 160,
+      "return": -385.533866,
+      "timesteps": 33440
+    },
+    {
+      "episode": 210,
+      "epsilon": 0.08802714285714286,
+      "length": 160,
+      "return": -343.151456,
+      "timesteps": 33600
+    },
+    {
+      "episode": 211,
+      "epsilon": 0.08368428571428566,
+      "length": 160,
+      "return": -166.044353,
+      "timesteps": 33760
+    },
+    {
+      "episode": 212,
+      "epsilon": 0.07934142857142856,
+      "length": 160,
+      "return": -246.773775,
+      "timesteps": 33920
+    },
+    {
+      "episode": 213,
+      "epsilon": 0.07499857142857158,
+      "length": 160,
+      "return": -182.593234,
+      "timesteps": 34080
+    },
+    {
+      "episode": 214,
+      "epsilon": 0.07065571428571416,
+      "length": 160,
+      "return": -121.029512,
+      "timesteps": 34240
+    },
+    {
+      "episode": 215,
+      "epsilon": 0.06631285714285717,
+      "length": 160,
+      "return": -236.920366,
+      "timesteps": 34400
+    },
+    {
+      "episode": 216,
+      "epsilon": 0.06196999999999997,
+      "length": 160,
+      "return": -201.687687,
+      "timesteps": 34560
+    },
+    {
+      "episode": 217,
+      "epsilon": 0.05762714285714288,
+      "length": 160,
+      "return": -314.218638,
+      "timesteps": 34720
+    },
+    {
+      "episode": 218,
+      "epsilon": 0.05328428571428567,
+      "length": 160,
+      "return": -153.985689,
+      "timesteps": 34880
+    },
+    {
+      "episode": 219,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -375.891634,
+      "timesteps": 35040
+    },
+    {
+      "episode": 220,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -167.407162,
+      "timesteps": 35200
+    },
+    {
+      "episode": 221,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -214.860756,
+      "timesteps": 35360
+    },
+    {
+      "episode": 222,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -201.04992,
+      "timesteps": 35520
+    },
+    {
+      "episode": 223,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -122.923054,
+      "timesteps": 35680
+    },
+    {
+      "episode": 224,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -133.982955,
+      "timesteps": 35840
+    },
+    {
+      "episode": 225,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -280.889816,
+      "timesteps": 36000
+    },
+    {
+      "episode": 226,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -133.69442,
+      "timesteps": 36160
+    },
+    {
+      "episode": 227,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -350.117844,
+      "timesteps": 36320
+    },
+    {
+      "episode": 228,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -423.979358,
+      "timesteps": 36480
+    },
+    {
+      "episode": 229,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -183.681107,
+      "timesteps": 36640
+    },
+    {
+      "episode": 230,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -479.831954,
+      "timesteps": 36800
+    },
+    {
+      "episode": 231,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -153.762578,
+      "timesteps": 36960
+    },
+    {
+      "episode": 232,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -243.667717,
+      "timesteps": 37120
+    },
+    {
+      "episode": 233,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -124.124896,
+      "timesteps": 37280
+    },
+    {
+      "episode": 234,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -192.25847,
+      "timesteps": 37440
+    },
+    {
+      "episode": 235,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -134.447066,
+      "timesteps": 37600
+    },
+    {
+      "episode": 236,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -369.294319,
+      "timesteps": 37760
+    },
+    {
+      "episode": 237,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -115.064007,
+      "timesteps": 37920
+    },
+    {
+      "episode": 238,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -169.681118,
+      "timesteps": 38080
+    },
+    {
+      "episode": 239,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -125.759671,
+      "timesteps": 38240
+    },
+    {
+      "episode": 240,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -212.811548,
+      "timesteps": 38400
+    },
+    {
+      "episode": 241,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -234.237186,
+      "timesteps": 38560
+    },
+    {
+      "episode": 242,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -265.139305,
+      "timesteps": 38720
+    },
+    {
+      "episode": 243,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -125.769568,
+      "timesteps": 38880
+    },
+    {
+      "episode": 244,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -327.264236,
+      "timesteps": 39040
+    },
+    {
+      "episode": 245,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -148.429582,
+      "timesteps": 39200
+    },
+    {
+      "episode": 246,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -145.274385,
+      "timesteps": 39360
+    },
+    {
+      "episode": 247,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -127.074189,
+      "timesteps": 39520
+    },
+    {
+      "episode": 248,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -255.476919,
+      "timesteps": 39680
+    },
+    {
+      "episode": 249,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -130.403578,
+      "timesteps": 39840
+    },
+    {
+      "episode": 250,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -358.535607,
+      "timesteps": 40000
+    },
+    {
+      "episode": 251,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -134.761403,
+      "timesteps": 40160
+    },
+    {
+      "episode": 252,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -123.560136,
+      "timesteps": 40320
+    },
+    {
+      "episode": 253,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -172.407348,
+      "timesteps": 40480
+    },
+    {
+      "episode": 254,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -358.346562,
+      "timesteps": 40640
+    },
+    {
+      "episode": 255,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -136.01872,
+      "timesteps": 40800
+    },
+    {
+      "episode": 256,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -173.677187,
+      "timesteps": 40960
+    },
+    {
+      "episode": 257,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -188.433659,
+      "timesteps": 41120
+    },
+    {
+      "episode": 258,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -262.982017,
+      "timesteps": 41280
+    },
+    {
+      "episode": 259,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -123.787244,
+      "timesteps": 41440
+    },
+    {
+      "episode": 260,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -405.011185,
+      "timesteps": 41600
+    },
+    {
+      "episode": 261,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -493.466569,
+      "timesteps": 41760
+    },
+    {
+      "episode": 262,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -309.629404,
+      "timesteps": 41920
+    },
+    {
+      "episode": 263,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -172.359397,
+      "timesteps": 42080
+    },
+    {
+      "episode": 264,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -334.608269,
+      "timesteps": 42240
+    },
+    {
+      "episode": 265,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -168.649355,
+      "timesteps": 42400
+    },
+    {
+      "episode": 266,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -470.068123,
+      "timesteps": 42560
+    },
+    {
+      "episode": 267,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -103.439621,
+      "timesteps": 42720
+    },
+    {
+      "episode": 268,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -322.465729,
+      "timesteps": 42880
+    },
+    {
+      "episode": 269,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -357.93223,
+      "timesteps": 43040
+    },
+    {
+      "episode": 270,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -244.29614,
+      "timesteps": 43200
+    },
+    {
+      "episode": 271,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -274.968052,
+      "timesteps": 43360
+    },
+    {
+      "episode": 272,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -266.010573,
+      "timesteps": 43520
+    },
+    {
+      "episode": 273,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -167.5143,
+      "timesteps": 43680
+    },
+    {
+      "episode": 274,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -131.969199,
+      "timesteps": 43840
+    },
+    {
+      "episode": 275,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -343.203756,
+      "timesteps": 44000
+    },
+    {
+      "episode": 276,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -220.953683,
+      "timesteps": 44160
+    },
+    {
+      "episode": 277,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -135.993948,
+      "timesteps": 44320
+    },
+    {
+      "episode": 278,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -360.285162,
+      "timesteps": 44480
+    },
+    {
+      "episode": 279,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -467.995126,
+      "timesteps": 44640
+    },
+    {
+      "episode": 280,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -236.398652,
+      "timesteps": 44800
+    },
+    {
+      "episode": 281,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -196.562836,
+      "timesteps": 44960
+    },
+    {
+      "episode": 282,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -469.756031,
+      "timesteps": 45120
+    },
+    {
+      "episode": 283,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -132.065292,
+      "timesteps": 45280
+    },
+    {
+      "episode": 284,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -198.2527,
+      "timesteps": 45440
+    },
+    {
+      "episode": 285,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -311.587134,
+      "timesteps": 45600
+    },
+    {
+      "episode": 286,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -169.299868,
+      "timesteps": 45760
+    },
+    {
+      "episode": 287,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -181.955437,
+      "timesteps": 45920
+    },
+    {
+      "episode": 288,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -132.13778,
+      "timesteps": 46080
+    },
+    {
+      "episode": 289,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -164.576681,
+      "timesteps": 46240
+    },
+    {
+      "episode": 290,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -161.652083,
+      "timesteps": 46400
+    },
+    {
+      "episode": 291,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -168.499389,
+      "timesteps": 46560
+    },
+    {
+      "episode": 292,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -429.906056,
+      "timesteps": 46720
+    },
+    {
+      "episode": 293,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -363.72546,
+      "timesteps": 46880
+    },
+    {
+      "episode": 294,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -380.24017,
+      "timesteps": 47040
+    },
+    {
+      "episode": 295,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -274.336949,
+      "timesteps": 47200
+    },
+    {
+      "episode": 296,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -413.807429,
+      "timesteps": 47360
+    },
+    {
+      "episode": 297,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -137.644427,
+      "timesteps": 47520
+    },
+    {
+      "episode": 298,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -160.04061,
+      "timesteps": 47680
+    },
+    {
+      "episode": 299,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -255.387369,
+      "timesteps": 47840
+    },
+    {
+      "episode": 300,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -156.669281,
+      "timesteps": 48000
+    },
+    {
+      "episode": 301,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -159.81059,
+      "timesteps": 48160
+    },
+    {
+      "episode": 302,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -253.35104,
+      "timesteps": 48320
+    },
+    {
+      "episode": 303,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -502.605102,
+      "timesteps": 48480
+    },
+    {
+      "episode": 304,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -147.996305,
+      "timesteps": 48640
+    },
+    {
+      "episode": 305,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -355.265451,
+      "timesteps": 48800
+    },
+    {
+      "episode": 306,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -431.082773,
+      "timesteps": 48960
+    },
+    {
+      "episode": 307,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -148.962064,
+      "timesteps": 49120
+    },
+    {
+      "episode": 308,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -430.571745,
+      "timesteps": 49280
+    },
+    {
+      "episode": 309,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -313.997008,
+      "timesteps": 49440
+    },
+    {
+      "episode": 310,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -130.573431,
+      "timesteps": 49600
+    },
+    {
+      "episode": 311,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -500.213186,
+      "timesteps": 49760
+    },
+    {
+      "episode": 312,
+      "epsilon": 0.05,
+      "length": 160,
+      "return": -340.540656,
+      "timesteps": 49920
+    }
+  ],
+  "validation": [
+    {
+      "mean_reward": -1.8341803693474505,
+      "timesteps": 10000
+    },
+    {
+      "mean_reward": -1.6044664835200375,
+      "timesteps": 20000
+    },
+    {
+      "mean_reward": -1.7077667082335923,
+      "timesteps": 30000
+    },
+    {
+      "mean_reward": -1.725814405714633,
+      "timesteps": 40000
+    },
+    {
+      "mean_reward": -1.783188060333767,
+      "timesteps": 50000
+    }
+  ]
+}

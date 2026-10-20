@@ -1,0 +1,49 @@
+{
+  "ablation": "no-queue",
+  "agent_seed": 23,
+  "algorithm": "dqn",
+  "best_validation_mean_reward": -1.729728050767237,
+  "checkpoint_steps": 40000,
+  "config": {
+    "arrival_interval_ms": 12,
+    "episode_steps": 160,
+    "failure_weight": 4.0,
+    "freshness_weight": 2.0,
+    "latency_weight": 1.0
+  },
+  "gamma": 0.95,
+  "hyperparameters": {
+    "batch_size": 64,
+    "buffer_size": 100000,
+    "learning_rate": 0.0001,
+    "net_arch": [
+      128,
+      128
+    ],
+    "target_update_interval": 1000
+  },
+  "limitations": "synthetic simulator; aggregated telemetry; validation-selected checkpoint",
+  "observation_version": 1,
+  "packages": {
+    "gymnasium": "1.4.0",
+    "numpy": "2.5.4",
+    "stable-baselines3": "2.9.0",
+    "torch": "2.14.1+cpu"
+  },
+  "python": "3.12.14",
+  "scenario": "mixed",
+  "schema_version": 1,
+  "selection_seeds": [
+    100000,
+    100001
+  ],
+  "selection_split": "validation",
+  "source_sha256": "d401889b8508e2633983a5870163b05d95971e1d4164aece29b27e046c9261b4",
+  "training_seconds": 16.981307411042508,
+  "training_seed_range": [
+    0,
+    100000
+  ],
+  "training_steps": 50000,
+  "weights_sha256": "b5129781bc18f03bd2daac831a35eab747beed24a81017205f05875355ab4f83"
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "timesteps_per_run": 50000,
+  "training_seeds": [7, 23, 47, 71, 97],
+  "ablation_seeds": [7, 23, 47],
+  "validation_seed": 100100,
+  "validation_episodes": 30,
+  "conditions": ["full", "no-freshness", "no-queue", "gamma-zero"],
+  "budget_note": "Initial reproducible CPU experiment: 14 independently trained models, 700000 total interactions. The longer 250000-step-per-model study remains an optional extension; no convergence claim."
+}
