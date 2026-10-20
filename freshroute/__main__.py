@@ -26,6 +26,8 @@ def positive(value):
 def main():
     parser = argparse.ArgumentParser(description="FreshRoute RL: learn where reads should go.")
     commands = parser.add_subparsers(dest="command", required=True)
+    serving = commands.add_parser('serve', help='serve the local inference API and built web app')
+    serving.add_argument('--port', type=positive, default=8000)
     training = commands.add_parser("train", help="learn a Q-table from simulator interaction")
     training.add_argument("--episodes", type=positive, default=1200)
     training.add_argument("--steps", type=positive, default=160)
@@ -55,7 +57,11 @@ def main():
     replay.add_argument("--output", type=Path, default=Path("artifacts/runs/decisions.jsonl"))
     args = parser.parse_args()
     try:
-        if args.command == "train":
+        if args.command == 'serve':
+            import uvicorn
+            from .api import create_app
+            uvicorn.run(create_app(), host='127.0.0.1', port=args.port)
+        elif args.command == "train":
             agent, curve = train(episodes=args.episodes, steps=args.steps, seed=args.seed, scenario=args.scenario)
             agent.save(args.output)
             write_json(args.output.with_suffix(".training.json"), {"metadata": agent.metadata, "episodes": curve})
