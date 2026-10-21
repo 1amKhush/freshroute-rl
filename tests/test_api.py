@@ -40,3 +40,16 @@ class APITests(unittest.TestCase):
         for _ in range(160):
             self.assertEqual(self.client.post(f'/api/sessions/{session}/step').status_code, 200)
         self.assertEqual(self.client.post(f'/api/sessions/{session}/step').status_code, 409)
+
+    def test_faults_and_selected_decision_counterfactuals(self):
+        session = self.create()
+        base = f'/api/sessions/{session}'
+        fault = self.client.post(base + '/faults', json={'kind': 'outage', 'replica': 0, 'duration_steps': 20})
+        self.assertEqual(fault.status_code, 200)
+        self.assertFalse(fault.json()['observation']['replicas'][0]['online'])
+        self.assertEqual(self.client.post(base + '/faults', json={'kind': 'lag', 'replica': 1}).status_code, 400)
+        row = self.client.post(base + '/step').json()
+        branches = self.client.post(base + '/counterfactuals', json={'horizon': 8}).json()
+        self.assertEqual(branches['step'], row['step'])
+        self.assertEqual(branches['branches'][row['action']]['first_outcome'], row['outcome'])
+        self.assertEqual(len(self.client.get(base + '/trace').text.splitlines()), 1)

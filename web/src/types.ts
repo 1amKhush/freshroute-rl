@@ -31,6 +31,6 @@ export type Evaluation = { split: string; episodes_per_scenario: number; results
 export type Model = { id: string; label: string; algorithm: string }
 export type Session = { id: string; model_id: string; seed: number; scenario: string; observation: Observation }
 export type Counterfactual = {
-  snapshot_sha256: string; horizon: number; rollout_policy: string;
+  snapshot_sha256: string; step: number; horizon: number; rollout_policy: string;
   branches: { action: number; immediate_reward: number; discounted_return: number; first_outcome: Outcome }[]
 }

@@ -38,6 +38,11 @@ class FaultRequest(BaseModel):
     value: float = Field(default=100, ge=0, le=1000, allow_inf_nan=False)
 
 
+class BranchRequest(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    horizon: int = Field(default=8, ge=1, le=30)
+
+
 def record_step(env, agent, seed):
     observation = env.observe()
     action = agent.act(observation)
@@ -179,6 +184,14 @@ def create_app(*, models=None, web_directory=None):
         session = lab.get(session_id)
         with session.lock:
             return PlainTextResponse(session.trace_text(), headers={'Content-Disposition': 'attachment; filename="decisions.jsonl"'})
+
+    @app.post('/api/sessions/{session_id}/counterfactuals')
+    def counterfactuals(session_id: str, request: BranchRequest):
+        from .counterfactual import branch_actions
+        session = lab.get(session_id)
+        with session.lock:
+            snapshot = session.last_snapshot if session.last_snapshot is not None else session.env
+            return branch_actions(snapshot, session.agent, horizon=request.horizon)
 
     @app.get('/api/sessions/{session_id}/manifest')
     def manifest(session_id: str):

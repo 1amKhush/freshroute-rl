@@ -16,7 +16,7 @@ export function Topology({ row, snapshot }: { row: Decision; snapshot: boolean }
       <div className="replica-grid">{obs.replicas.map(replica => <article key={replica.id} className={`replica ${row.action === replica.id ? 'chosen' : ''} ${!replica.online ? 'offline' : ''}`}><div className="replica-title"><span className="database-icon" aria-hidden="true">▱</span><span className={`dot ${replica.online ? 'green-dot' : 'red-dot'}`} /><span className="replica-state">{replica.online ? 'Online' : 'Offline'}</span></div><h3>{replica.region}</h3><p className="replica-role">{replica.is_leader ? 'PRIMARY / LEADER' : 'READ REPLICA'}</p>
         <dl><div><dt>Network RTT</dt><dd>{ms(replica.rtt_ms)}</dd></div><div><dt>Queued work</dt><dd>{ms(replica.queue_ms)}</dd></div><div><dt>Data lag</dt><dd className={replica.staleness_ms > obs.freshness_tolerance_ms ? 'amber-text' : 'green-text'}>{ms(replica.staleness_ms)}</dd></div><div><dt>Applied version</dt><dd>v{replica.applied_version}<small> / v{obs.leader_version}</small></dd></div></dl>
         <div className={`route-label ${replica.id === row.action ? 'active' : ''}`}>{replica.id === row.action ? '↳ Selected by policy' : `${replica.version_lag} versions behind`}</div></article>)}</div>
-      <div className="network-caption"><span className="dot blue-dot" /> Selected route <span className="caption-divider" /> Synthetic network · asynchronous replication</div></div></section>
+      <div className="network-caption"><span className="dot blue-dot" /> {snapshot ? 'Next request telemetry · route shows preceding action' : 'Selected route'} <span className="caption-divider" /> Synthetic network · asynchronous replication</div></div></section>
 }
 
 export function OutcomeCards({ row }: { row: Decision }) {
