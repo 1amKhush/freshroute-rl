@@ -30,6 +30,14 @@ class NewSession(BaseModel):
     scenario: Literal['balanced', 'write-burst', 'regional-outage', 'traffic-shift'] = 'balanced'
 
 
+class FaultRequest(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    kind: Literal['outage', 'lag', 'load', 'restore']
+    replica: int = Field(ge=0, le=2)
+    duration_steps: int = Field(default=20, ge=1, le=160)
+    value: float = Field(default=100, ge=0, le=1000, allow_inf_nan=False)
+
+
 def record_step(env, agent, seed):
     observation = env.observe()
     action = agent.act(observation)
@@ -154,6 +162,17 @@ def create_app(*, models=None, web_directory=None):
         with lab.lock:
             if lab.sessions.pop(session_id, None) is None:
                 raise HTTPException(404, 'Session not found')
+
+    @app.post('/api/sessions/{session_id}/faults')
+    def fault(session_id: str, request: FaultRequest):
+        session = lab.get(session_id)
+        with session.lock:
+            try:
+                event = session.env.inject_fault(**request.model_dump())
+            except ValueError as error:
+                raise HTTPException(400, str(error)) from error
+            session.updated = time.monotonic()
+            return {'event': event, 'observation': session.env.observe()}
 
     @app.get('/api/sessions/{session_id}/trace', response_class=PlainTextResponse)
     def trace(session_id: str):
