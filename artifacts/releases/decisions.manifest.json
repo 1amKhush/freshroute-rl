@@ -1,0 +1,305 @@
+{
+  "model_metadata": {
+    "ablation": "full",
+    "agent_seed": 71,
+    "algorithm": "dqn",
+    "best_validation_mean_reward": -1.2202257019613922,
+    "checkpoint_steps": 50000,
+    "config": {
+      "arrival_interval_ms": 12,
+      "episode_steps": 160,
+      "failure_weight": 4.0,
+      "freshness_weight": 2.0,
+      "latency_weight": 1.0
+    },
+    "gamma": 0.95,
+    "hyperparameters": {
+      "batch_size": 64,
+      "buffer_size": 100000,
+      "learning_rate": 0.0001,
+      "net_arch": [
+        128,
+        128
+      ],
+      "target_update_interval": 1000
+    },
+    "limitations": "synthetic simulator; aggregated telemetry; validation-selected checkpoint",
+    "observation_version": 1,
+    "packages": {
+      "gymnasium": "1.4.0",
+      "numpy": "2.5.4",
+      "stable-baselines3": "2.9.0",
+      "torch": "2.14.1+cpu"
+    },
+    "python": "3.12.14",
+    "scenario": "mixed",
+    "schema_version": 1,
+    "selection_seeds": [
+      100000,
+      100001
+    ],
+    "selection_split": "validation",
+    "source_sha256": "d401889b8508e2633983a5870163b05d95971e1d4164aece29b27e046c9261b4",
+    "training_seconds": 16.599378128012177,
+    "training_seed_range": [
+      0,
+      100000
+    ],
+    "training_steps": 50000,
+    "weights_sha256": "521f606926471b6de11b320c7779510ee450e325f4c891d7bf7b62d5d5f5188f"
+  },
+  "model_sha256": "521f606926471b6de11b320c7779510ee450e325f4c891d7bf7b62d5d5f5188f",
+  "scenario": "regional-outage",
+  "schema_version": 1,
+  "seed": 110000,
+  "summary": {
+    "availability_rate": 0.84375,
+    "by_client_region": {
+      "0": {
+        "availability_rate": 0.7241379310344828,
+        "freshness_violation_rate_among_responses": 0.21428571428571427,
+        "mean_response_ms_including_failures": 130.96962167797494,
+        "mean_reward": -2.015005180311243,
+        "mean_reward_terms": {
+          "failure": -1.103448275862069,
+          "freshness": -0.2786206896551724,
+          "latency": -0.6329362147940016
+        },
+        "mean_staleness_ms_among_responses": 77.71428571428571,
+        "p50_response_ms_including_failures": 180.0,
+        "p50_staleness_ms_among_responses": 96,
+        "p50_success_response_ms": 42.32414445109487,
+        "p50_version_lag_among_responses": 2,
+        "p95_response_ms_including_failures": 240.0,
+        "p95_staleness_ms_among_responses": 192,
+        "p95_success_response_ms": 236.03200852349653,
+        "p95_version_lag_among_responses": 4,
+        "p99_response_ms_including_failures": 240.0,
+        "p99_staleness_ms_among_responses": 204,
+        "p99_success_response_ms": 237.5422693600489,
+        "p99_version_lag_among_responses": 4,
+        "requests": 58,
+        "routes": {
+          "Frankfurt": 18,
+          "Mumbai": 26,
+          "Virginia": 14
+        },
+        "sla_rate": 0.5689655172413793,
+        "successful_responses": 42,
+        "timeout_rate": 0.27586206896551724,
+        "unavailable_rate": 0.0,
+        "unseen_state_rate": null
+      },
+      "1": {
+        "availability_rate": 1.0,
+        "freshness_violation_rate_among_responses": 0.06666666666666667,
+        "mean_response_ms_including_failures": 133.6243962522291,
+        "mean_reward": -0.9300903503286124,
+        "mean_reward_terms": {
+          "failure": 0.0,
+          "freshness": -0.18666666666666665,
+          "latency": -0.7434236836619459
+        },
+        "mean_staleness_ms_among_responses": 72.0,
+        "p50_response_ms_including_failures": 142.06915729109824,
+        "p50_staleness_ms_among_responses": 0,
+        "p50_success_response_ms": 142.06915729109824,
+        "p50_version_lag_among_responses": 0,
+        "p95_response_ms_including_failures": 187.23892106379424,
+        "p95_staleness_ms_among_responses": 240,
+        "p95_success_response_ms": 187.23892106379424,
+        "p95_version_lag_among_responses": 4,
+        "p99_response_ms_including_failures": 187.23892106379424,
+        "p99_staleness_ms_among_responses": 240,
+        "p99_success_response_ms": 187.23892106379424,
+        "p99_version_lag_among_responses": 4,
+        "requests": 15,
+        "routes": {
+          "Frankfurt": 8,
+          "Mumbai": 2,
+          "Virginia": 5
+        },
+        "sla_rate": 0.9333333333333333,
+        "successful_responses": 15,
+        "timeout_rate": 0.0,
+        "unavailable_rate": 0.0,
+        "unseen_state_rate": null
+      },
+      "2": {
+        "availability_rate": 0.896551724137931,
+        "freshness_violation_rate_among_responses": 0.19230769230769232,
+        "mean_response_ms_including_failures": 103.67501057305773,
+        "mean_reward": -1.1505293182510492,
+        "mean_reward_terms": {
+          "failure": -0.41379310344827586,
+          "freshness": -0.24275862068965517,
+          "latency": -0.49397759411311826
+        },
+        "mean_staleness_ms_among_responses": 80.46153846153847,
+        "p50_response_ms_including_failures": 78.50712643960009,
+        "p50_staleness_ms_among_responses": 0,
+        "p50_success_response_ms": 52.61713952576228,
+        "p50_version_lag_among_responses": 0,
+        "p95_response_ms_including_failures": 240.0,
+        "p95_staleness_ms_among_responses": 432,
+        "p95_success_response_ms": 207.37097656932926,
+        "p95_version_lag_among_responses": 4,
+        "p99_response_ms_including_failures": 240.0,
+        "p99_staleness_ms_among_responses": 564,
+        "p99_success_response_ms": 239.69365211704815,
+        "p99_version_lag_among_responses": 5,
+        "requests": 87,
+        "routes": {
+          "Frankfurt": 37,
+          "Mumbai": 0,
+          "Virginia": 50
+        },
+        "sla_rate": 0.7241379310344828,
+        "successful_responses": 78,
+        "timeout_rate": 0.0,
+        "unavailable_rate": 0.10344827586206896,
+        "unseen_state_rate": null
+      }
+    },
+    "by_request_class": {
+      "bounded": {
+        "availability_rate": 0.8461538461538461,
+        "freshness_violation_rate_among_responses": 0.5,
+        "mean_response_ms_including_failures": 78.84658631331126,
+        "mean_reward": -1.6334212060141224,
+        "mean_reward_terms": {
+          "failure": -0.6153846153846154,
+          "freshness": -0.58,
+          "latency": -0.438036590629507
+        },
+        "mean_staleness_ms_among_responses": 104.45454545454545,
+        "p50_response_ms_including_failures": 45.50704275618514,
+        "p50_staleness_ms_among_responses": 96,
+        "p50_success_response_ms": 41.91365142039319,
+        "p50_version_lag_among_responses": 2,
+        "p95_response_ms_including_failures": 180.0,
+        "p95_staleness_ms_among_responses": 240,
+        "p95_success_response_ms": 163.19846693879998,
+        "p95_version_lag_among_responses": 4,
+        "p99_response_ms_including_failures": 180.0,
+        "p99_staleness_ms_among_responses": 564,
+        "p99_success_response_ms": 175.1083921183149,
+        "p99_version_lag_among_responses": 5,
+        "requests": 52,
+        "routes": {
+          "Frankfurt": 6,
+          "Mumbai": 13,
+          "Virginia": 33
+        },
+        "sla_rate": 0.4230769230769231,
+        "successful_responses": 44,
+        "timeout_rate": 0.15384615384615385,
+        "unavailable_rate": 0.0,
+        "unseen_state_rate": null
+      },
+      "latest": {
+        "availability_rate": 0.7619047619047619,
+        "freshness_violation_rate_among_responses": 0.0625,
+        "mean_response_ms_including_failures": 190.16894919380837,
+        "mean_reward": -1.902211891482138,
+        "mean_reward_terms": {
+          "failure": -0.9523809523809523,
+          "freshness": -0.15746031746031747,
+          "latency": -0.7923706216408682
+        },
+        "mean_staleness_ms_among_responses": 7.25,
+        "p50_response_ms_including_failures": 200.8413462794862,
+        "p50_staleness_ms_among_responses": 0,
+        "p50_success_response_ms": 170.16358464356878,
+        "p50_version_lag_among_responses": 0,
+        "p95_response_ms_including_failures": 240.0,
+        "p95_staleness_ms_among_responses": 48,
+        "p95_success_response_ms": 237.29504660089643,
+        "p95_version_lag_among_responses": 2,
+        "p99_response_ms_including_failures": 240.0,
+        "p99_staleness_ms_among_responses": 168,
+        "p99_success_response_ms": 239.69365211704815,
+        "p99_version_lag_among_responses": 3,
+        "requests": 63,
+        "routes": {
+          "Frankfurt": 57,
+          "Mumbai": 1,
+          "Virginia": 5
+        },
+        "sla_rate": 0.7142857142857143,
+        "successful_responses": 48,
+        "timeout_rate": 0.09523809523809523,
+        "unavailable_rate": 0.14285714285714285,
+        "unseen_state_rate": null
+      },
+      "relaxed": {
+        "availability_rate": 0.9555555555555556,
+        "freshness_violation_rate_among_responses": 0.0,
+        "mean_response_ms_including_failures": 56.43696963244204,
+        "mean_reward": -0.5808989894380782,
+        "mean_reward_terms": {
+          "failure": -0.17777777777777778,
+          "freshness": 0.0,
+          "latency": -0.40312121166030035
+        },
+        "mean_staleness_ms_among_responses": 132.0,
+        "p50_response_ms_including_failures": 42.32414445109487,
+        "p50_staleness_ms_among_responses": 120,
+        "p50_success_response_ms": 42.25679553135964,
+        "p50_version_lag_among_responses": 2,
+        "p95_response_ms_including_failures": 121.34472782445494,
+        "p95_staleness_ms_among_responses": 408,
+        "p95_success_response_ms": 114.14756608291871,
+        "p95_version_lag_among_responses": 4,
+        "p99_response_ms_including_failures": 140.0,
+        "p99_staleness_ms_among_responses": 432,
+        "p99_success_response_ms": 121.34472782445494,
+        "p99_version_lag_among_responses": 5,
+        "requests": 45,
+        "routes": {
+          "Frankfurt": 0,
+          "Mumbai": 14,
+          "Virginia": 31
+        },
+        "sla_rate": 0.9555555555555556,
+        "successful_responses": 43,
+        "timeout_rate": 0.044444444444444446,
+        "unavailable_rate": 0.0,
+        "unseen_state_rate": null
+      }
+    },
+    "freshness_violation_rate_among_responses": 0.18518518518518517,
+    "mean_response_ms_including_failures": 116.37706200601254,
+    "mean_reward": -1.443235665005141,
+    "mean_reward_terms": {
+      "failure": -0.625,
+      "freshness": -0.2505,
+      "latency": -0.5677356650051412
+    },
+    "mean_staleness_ms_among_responses": 78.66666666666667,
+    "p50_response_ms_including_failures": 112.38520409501928,
+    "p50_staleness_ms_among_responses": 0,
+    "p50_success_response_ms": 58.72424031892565,
+    "p50_version_lag_among_responses": 0,
+    "p95_response_ms_including_failures": 240.0,
+    "p95_staleness_ms_among_responses": 288,
+    "p95_success_response_ms": 229.7466450228404,
+    "p95_version_lag_among_responses": 4,
+    "p99_response_ms_including_failures": 240.0,
+    "p99_staleness_ms_among_responses": 432,
+    "p99_success_response_ms": 237.5422693600489,
+    "p99_version_lag_among_responses": 5,
+    "requests": 160,
+    "routes": {
+      "Frankfurt": 63,
+      "Mumbai": 28,
+      "Virginia": 69
+    },
+    "sla_rate": 0.6875,
+    "successful_responses": 135,
+    "timeout_rate": 0.1,
+    "unavailable_rate": 0.05625,
+    "unseen_state_rate": null
+  },
+  "trace_sha256": "fda90d7da9af7e54204b3e937a39d5a699dedf39c346b713a58cd5d1252c4bfe"
+}

@@ -1,0 +1,69 @@
+{
+  "evaluation_source_sha256": "d401889b8508e2633983a5870163b05d95971e1d4164aece29b27e046c9261b4",
+  "models": [
+    {
+      "path": "artifacts/experiments/initial/full-seed-7",
+      "weights_sha256": "11b8967444b3167ef001439e8c8d062a5657737d5c6e2838412a77cacfc2467a"
+    },
+    {
+      "path": "artifacts/experiments/initial/full-seed-23",
+      "weights_sha256": "de9cec6c5c8d4045e71d30ffd47b532eb1fac21b767414652e4d37ddb5cbbbbc"
+    },
+    {
+      "path": "artifacts/experiments/initial/full-seed-47",
+      "weights_sha256": "36cb39d3c214729bf14c132be871ad0bd446a75c1c2d1bd080198afd4131b8fd"
+    },
+    {
+      "path": "artifacts/experiments/initial/full-seed-71",
+      "weights_sha256": "521f606926471b6de11b320c7779510ee450e325f4c891d7bf7b62d5d5f5188f"
+    },
+    {
+      "path": "artifacts/experiments/initial/full-seed-97",
+      "weights_sha256": "ac9dd078a7c0d4935dfb0d897f3e189f6354380a513629154a338517419341c8"
+    },
+    {
+      "path": "artifacts/experiments/initial/no-freshness-seed-7",
+      "weights_sha256": "9ab938de611b158251c1dff395dd23197ce76785dbd40c5c254b9f5e61dfbd84"
+    },
+    {
+      "path": "artifacts/experiments/initial/no-freshness-seed-23",
+      "weights_sha256": "9c65aebeaf699fe46c617ee5d9731d877a75d9194bc2682dad1999559af80c89"
+    },
+    {
+      "path": "artifacts/experiments/initial/no-freshness-seed-47",
+      "weights_sha256": "bf9ab05a97ad3a6f625ef32dcfeae32102a3241cbc2d3707e33b58c4205fca2b"
+    },
+    {
+      "path": "artifacts/experiments/initial/no-queue-seed-7",
+      "weights_sha256": "bcb8064b8dd3cc6e24ea8e24dc5b3be2c5e751e675169f492efd8b893b3e39ea"
+    },
+    {
+      "path": "artifacts/experiments/initial/no-queue-seed-23",
+      "weights_sha256": "b5129781bc18f03bd2daac831a35eab747beed24a81017205f05875355ab4f83"
+    },
+    {
+      "path": "artifacts/experiments/initial/no-queue-seed-47",
+      "weights_sha256": "bba15f79afd4dd6ca96e67900ff3e20131f865d3a03feca0dd5ab6b6acac7c3e"
+    },
+    {
+      "path": "artifacts/experiments/initial/gamma-zero-seed-7",
+      "weights_sha256": "fbf6dea74c227746324fac37ab2a08986ec7ee9bd84c95e039b869b3138ed8bc"
+    },
+    {
+      "path": "artifacts/experiments/initial/gamma-zero-seed-23",
+      "weights_sha256": "d1fa93f6bf8d1215d79dab9afa6251d779eb813fe04906f888ad0223c6699318"
+    },
+    {
+      "path": "artifacts/experiments/initial/gamma-zero-seed-47",
+      "weights_sha256": "e28cb334fc55ac8afa722f6b9a4662916d7ecc8fa179e3018836a41e8eed1a6b"
+    }
+  ],
+  "schema_version": 1,
+  "selected_model": "artifacts/experiments/initial/full-seed-71",
+  "selected_validation_score": -1.1951158645334206,
+  "selection_rule": "largest macro mean reward across four validation scenarios",
+  "test_episodes_per_scenario": 30,
+  "test_scope": "new seeds in the same four configured workload regimes; not an out-of-distribution claim",
+  "test_seed_start": 200000,
+  "validation_sha256": "1d16759d60ebf45d047edfd2a1c24eb1bc02c24d6c773a8b3541fdb45da0e97d"
+}
