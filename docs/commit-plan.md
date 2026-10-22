@@ -1,60 +1,36 @@
-# Structured commit plan
+# Structured commit record
 
-Git is initialized locally on `main`. **No commits or remote have been created.** The rows below are a plan for real work; prepared files are not an invented history. Commit each unit when it is implemented and verified. Do not backdate commits, fabricate authors, or split unchanged code into artificial “daily progress.”
+The original 16-unit plan has been implemented as real local commits on `main`, with `origin` configured to `https://github.com/1amKhush/freshroute-rl.git`. Independent web work was committed once its prerequisites were ready; Git history records the actual order. No dates or contributor identities were fabricated.
 
-## Initial work prepared in this directory
+| Unit | Commit | Work |
+| --- | --- | --- |
+| C01 | `432d9d0` | docs: define FreshRoute RL scope and execution plan |
+| C02 | `0a08204` | feat: add seeded replica simulator and Q-learning pipeline |
+| C03 | `dd61a07` | experiment: record reproducible Q-learning demo artifacts |
+| C04 | `0386f88` | feat: version workload scenarios and observation schema |
+| C05 | `6486867` | feat: expose replica routing as a Gymnasium environment |
+| C06 | `87e5756` | feat: train and reload a DQN routing agent |
+| C07 | `54bb60b` | feat: add paired multi-seed evaluation and SLA breakdowns |
+| C08 | `5e6f0d2` | experiment: evaluate DQN and routing ablations |
+| C09 | `c700836` | feat: scaffold trace-driven web decision explorer |
+| C10 | `f076d25` | feat: visualize topology action values and reward outcomes |
+| C11 | `9abcddd` | feat: add replay timeline and evaluation comparisons |
+| C12 | `d6e32d1` | feat: serve isolated live simulator sessions |
+| C13 | `4a7bdda` | feat: inject replica faults during live inference |
+| C14 | `0a708a3` | feat: explain alternatives with snapshot counterfactuals |
+| C15 | `23ad6f6` | experiment: freeze final models and held-out test results |
+| C16 | this documentation commit | docs: publish reproduction guide report and demo script |
 
-| ID | Suggested commit message | Scope | Validation | Status |
-| --- | --- | --- | --- | --- |
-| C01 | `docs: define FreshRoute RL scope and execution plan` | README, proposal, implementation plan, UI spec, this plan, `.gitignore` | team reviews scope and remaining submission fields; check links and claimed status | prepared; team review pending |
-| C02 | `feat: add seeded replica simulator and Q-learning pipeline` | `pyproject.toml`, `freshroute/`, `tests/` | unit tests; train/evaluate/trace smoke run; saved-model replay equals in-memory replay | implemented and locally checked |
-| C03 | `experiment: record reproducible Q-learning demo artifacts` | `artifacts/demo/` checkpoint, curve, validation, trace, manifest, evidence README | regenerate from documented seeds and compare hashes; keep limitations visible | generated and locally checked |
+## Validation and scope
 
-Review and commit the prepared units from the project root:
+Simulator/learning invariants, Gymnasium checker, real DQN save/reload, paired evaluation, frozen artifact integrity, API/CLI equivalence, isolated sessions, fault semantics, and exact-state counterfactuals are checked. Browser checks cover replay, actual live DQN/fault/branch flow, keyboard use, mobile layout, malformed files, and automated accessibility. See [verification](validation.md).
 
-```bash
-git add .gitignore README.md docs/
-git diff --cached --stat
-git commit -m "docs: define FreshRoute RL scope and execution plan"
+C08/C15 use the documented initial 50000-step-per-model budget: 14 models and 700000 interactions, five full-agent seeds and three per ablation. The original longer training and reward-weight sweeps remain extensions. Final-test results were generated after recording validation selection and model hashes.
 
-git add pyproject.toml freshroute/ tests/
-python3 -m unittest discover -s tests -v
-git diff --cached --stat
-git commit -m "feat: add seeded replica simulator and Q-learning pipeline"
+C16 provides setup, methods/results, screenshots, a demo script, and automated clean-checkout verification. Approved team names/roles and the narrated presentation remain to be supplied by the actual team.
 
-git add artifacts/demo/
-git diff --cached --stat
-git commit -m "experiment: record reproducible Q-learning demo artifacts"
-```
+## Future commit discipline
 
-These are commands for the team to execute; they have not been run for you. C01 establishes the roadmap; C02 makes its documented application commands runnable. If you prefer every historical commit to have fully runnable README commands, combine C01/C02 as the initial commit and keep C03 separate. Real cohesion matters more than commit count.
+Implement one coherent change, run its relevant checks, inspect the staged diff, and commit with the real contributor identity. Preserve model/configuration/seed provenance for experiment claims. Keep new experiments in new output directories. Push normal commits and verify the remote head; never fabricate incremental effort or silently retune against the published test split.
 
-## Planned implementation commits
-
-| ID | Suggested commit message | Files/behavior to change | Acceptance / checks | Depends on |
-| --- | --- | --- | --- | --- |
-| C04 | `feat: version workload scenarios and observation schema` | scenario configs, explicit workload/fault schedules, normalized telemetry specification | deterministic config loading, invalid values rejected, no future information in observations | C02 |
-| C05 | `feat: expose replica routing as a Gymnasium environment` | adapter, declared spaces, seed/reset integration, termination semantics | Gymnasium environment checker plus simulator invariants and observation bounds | C04 |
-| C06 | `feat: train and reload a DQN routing agent` | DQN adapter, training CLI, tested dependency lock, checkpoint metadata | short CPU training, save/load equivalence, frozen inference, correct truncation handling | C05 |
-| C07 | `feat: add paired multi-seed evaluation and SLA breakdowns` | experiment matrix, per-class/region metrics, confidence intervals, strict split management | same exogenous schedule across policies; no parameter updates; independent training-run aggregation | C06 |
-| C08 | `experiment: evaluate DQN and routing ablations` | configs, five training seeds where feasible, full/no-freshness/no-queue/gamma-zero runs, results | reproducible commands and raw evidence; compute budget and losses reported | C07 |
-| C09 | `feat: scaffold trace-driven web decision explorer` | `web/` React/Vite/TypeScript, manifest/trace loading, semantic layout, pinned lockfile | frontend typecheck/build; actual fixture values render; invalid files get useful errors | C03 and trace contract |
-| C10 | `feat: visualize topology action values and reward outcomes` | replica diagram, request inspector, state coverage, pre/next-state toggle | values match trace; Q-values not called probabilities; null failures stay null | C09 |
-| C11 | `feat: add replay timeline and evaluation comparisons` | accessible play/pause/step/seek/speed, charts, policy comparison | browser replay reaches last record correctly; reset/keyboard/reduced motion/narrow screen work | C10, C07 for full comparisons |
-| C12 | `feat: serve isolated live simulator sessions` | local FastAPI, model registry, create/step/delete session routes | same seeded CLI/API outputs; independent sessions; bounded resources | C06, C11 |
-| C13 | `feat: inject replica faults during live inference` | versioned fault events, outage/lag/load controls, live trace export | fault changes actual transitions; replay immutable; fault metadata recorded | C12 |
-| C14 | `feat: explain alternatives with snapshot counterfactuals` | simulator/RNG clone, branch API, UI outcomes, snapshot hashes | original session unchanged; branch replay deterministic; estimates distinguished from measured alternatives | C13 |
-| C15 | `experiment: freeze final models and held-out test results` | selected checkpoints/normalizers, test matrix, hashes, metric tables | frozen validation-selected config; reserved test seeds used only now; no handpicked runs | C08 and final model selection |
-| C16 | `docs: publish reproduction guide report and demo script` | final README, methods/results/limits, contributor roles, clean setup evidence, demo script/video link | another teammate runs from clean checkout; complete submission checklist | C11–C15 |
-
-Optional extension after C16: `feat: validate routing with a local PostgreSQL replica workload`. Keep this separate from simulator conclusions and document actual database/network setup. It must not delay the RL submission.
-
-## Routine for each unit
-
-1. Implement one coherent behavior and update relevant docs.
-2. Run checks that establish its acceptance criteria. Save experiment configurations and outputs when claiming results.
-3. Review `git diff`, stage only that unit, and inspect `git diff --cached`.
-4. Commit with the real contributor identity. Use co-authorship only for actual contributors.
-5. Once a remote exists, push and verify the remote branch. A local commit is not publication evidence.
-
-Suggested work branches after the initial commits: `feat/gymnasium-env`, `feat/dqn-agent`, `feat/evaluation`, `feat/web-replay`, `feat/live-lab`. The team can use pull requests after adding the remote. Choose owners from actual approved members; keep implementation and review visible rather than assigning fictitious roles.
+A local PostgreSQL experiment is an optional separate extension after this simulator project.

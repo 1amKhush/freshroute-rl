@@ -1,6 +1,6 @@
 # Web decision laboratory
 
-**Status: specification only.** The initial implementation exports real replay data; the web application and API are future milestones. Build locally first. A cloud host or paid service is unnecessary for the assignment.
+**Status: core interface implemented.** The local React/FastAPI application supports replay, learned action values, reward outcomes, learning curves, comparisons, live sessions, faults, exports, and exact-state branches. The text below is the original design specification; optional extensions remain subject to the current [report](report.md). See the [demo guide](demo-guide.md) for the implemented flow. No cloud host or paid service is needed.
 
 ## Product goal and visual direction
 

@@ -1,6 +1,6 @@
 # Initial trained Q-learning demonstration
 
-These are **real outputs from the implemented simulator**, provided so the project can run before you train a model. They are development/validation evidence, not a final DQN result or evidence of performance on an actual database.
+These are **real outputs from the implemented simulator**, provided so the project can run before you train a model. They are original development/validation evidence at commit `dd61a07`, not the later frozen DQN result or evidence of performance on an actual database.
 
 ## Contents and provenance
 
@@ -31,7 +31,7 @@ The workload was calibrated during development using validation results; the ini
 
 ## Reproduce without overwriting the supplied evidence
 
-From the repository root:
+From the repository root. These commands reproduce behavior with current code; exact original-file byte comparison requires source revision `dd61a07` and Python 3.12.3:
 
 ```bash
 python3 -m freshroute train --episodes 1200 --steps 160 --seed 7 --scenario mixed --output artifacts/runs/reproduced/q-agent.json
@@ -63,7 +63,7 @@ Changing source code or interpreter metadata changes checkpoint provenance and h
 
 - All 13 simulator/learning checks passed, including a repeat in a fresh virtual environment without third-party runtime packages.
 - A second complete 192,000-step training run reproduced the checkpoint, learning curve, evaluation report, trace, and manifest **byte for byte**.
-- The supplied model's source fingerprint matches the current Python sources.
+- The supplied model's source fingerprint matches the Python sources at the original demonstration commit `dd61a07`.
 - The trace model/trace hashes verify, and deterministic checkpoint reload produces the same decisions.
 - Optional editable package installation and the `freshroute` console entry point worked with local build tooling and network access disabled.
 - CodeRabbit CLI was available but signed out, so its external review was not run. Direct code inspection and the executable checks above were completed.
