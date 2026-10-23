@@ -12,7 +12,7 @@ FreshRoute RL is a runnable reinforcement learning laboratory for staleness-awar
 
 - Three simulated replicas with persistent queues, asynchronous version replay, region-dependent RTTs, deadlines, and request-specific freshness budgets.
 - Genuine tabular Q-learning and CPU DQN training, saved models, frozen inference, and checksummed replay traces.
-- Replay controls, topology, pre-action telemetry, learned action values, reward terms, learning curves, and policy comparisons.
+- Replay controls, animated request/response routing, pre-action telemetry, learned action values, reward terms, learning curves, and policy comparisons.
 - Isolated live sessions with outages, lag, workload pressure, restoration, trace export, and exact-state counterfactual branches.
 - A preserved 14-model DQN study: five full-observation training seeds and three per ablation; 700,000 training interactions, paired validation, and a frozen final test.
 
@@ -43,9 +43,11 @@ python -m pip install --extra-index-url https://download.pytorch.org/whl/cpu --r
 
 In the interface:
 
-1. **Decision explorer:** play, step, seek, filter events, open a local JSONL trace, and compare pre-action versus next-state telemetry. The bundled trace is verified against its manifest hash.
+1. **Decision explorer:** play, step, seek, filter events, open a local JSONL trace, and compare pre-action versus next-state telemetry. Use **Animate read** to follow observation → choice → read → outcome, or choose Explain/Follow/Scan playback speeds. Motion can be paused or disabled and respects the system reduced-motion preference. The bundled trace is verified against its manifest hash.
 2. **Training & evaluation:** inspect raw learning curves and the bundled frozen model's test results. This report has its own model/split identity; it does not evaluate a newly opened custom trace.
 3. **Live laboratory:** choose a trained model, workload, and validation seed; start a session, inject faults, step the agent, compare all replica choices from the selected exact snapshot, or export the trace.
+
+The [visualization guide](docs/visualization.md) explains the motion and its data sources. It uses the MIT-licensed [Motion mini engine](https://motion.dev/docs/animate), measured at 3.3 kB gzip in isolation. Animation speed illustrates the sequence; response times and rewards remain actual simulator measurements.
 
 ## Run the RL core without the web stack
 
@@ -109,7 +111,7 @@ For browser checks, keep the server running in another terminal:
 LAB_URL=http://127.0.0.1:8000 npm --prefix web run test:e2e
 ```
 
-Tests use installed Chrome at `/usr/bin/google-chrome`; set `CHROME_PATH` for another installation, or install Playwright Chromium. Automated checks cover replay accuracy, keyboard navigation, invalid uploads, mobile layout, actual live DQN/fault/counterfactual flow, and WCAG A/AA rules in replay/live views. They do not replace a manual screen-reader review.
+Tests use installed Chrome at `/usr/bin/google-chrome`; set `CHROME_PATH` for another installation, or install Playwright Chromium. Eight browser checks cover replay accuracy, real packet paths and return/failure semantics, pause/seek cleanup, reduced motion, keyboard navigation, invalid uploads, mobile layout, actual live DQN/fault/counterfactual flow, and WCAG A/AA rules in replay/live views. They do not replace a manual screen-reader review.
 
 For frontend development, keep the Python server running and use `npm --prefix web run dev`. Vite proxies `/api` to port 8000. After changing demo/release artifacts, rerun `node scripts/sync-demo.mjs` and rebuild.
 
