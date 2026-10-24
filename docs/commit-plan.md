@@ -21,7 +21,8 @@ The original 16-unit plan and the routing-motion extension have been implemented
 | C15 | `23ad6f6` | experiment: freeze final models and held-out test results |
 | C16 | `a376277` | docs: publish reproduction guide report and demo script |
 | C17 | `4319ddc` | feat: animate recorded read routing with Motion mini |
-| C18 | this documentation commit | docs: explain routing motion and refresh demonstration evidence |
+| C18 | `99f26c6` | docs: explain routing motion and refresh demonstration evidence |
+| C19 | this refactor commit | refactor: consolidate decision records and replay state changes |
 
 ## Validation and scope
 
@@ -32,6 +33,8 @@ C08/C15 use the documented initial 50000-step-per-model budget: 14 models and 70
 C16 provides setup, methods/results, screenshots, a demo script, and automated clean-checkout verification. Approved team names/roles and the narrated presentation remain to be supplied by the actual team.
 
 C17 adds finite, trace-driven request/response motion, phase narration, replay/live pause controls, accessible motion preferences, a pinned lightweight engine with its MIT notice, and four new behavioral browser checks. C18 documents the visual semantics and measured bundle cost, updates the demonstration instructions, and captures the real revised interface. Eight production browser checks, representative React development checks, and a clean frontend install/build validate the extension.
+
+C19 shares the API/evaluator decision schema, centralizes replay pause/seek operations, simplifies trace guards and action-value bounds, and removes an overwritten percentile calculation. Verification includes 32 Python checks, eight browser checks, exact comparisons against 32 pre-refactor rollout/metric baselines, unchanged artifact hashes, and an identical default replay screenshot. The learning algorithms, simulator, animation lifecycle, and saved models retain their behavior.
 
 ## Future commit discipline
 

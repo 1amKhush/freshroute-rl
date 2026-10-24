@@ -15,8 +15,8 @@ from fastapi.responses import PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
-from .agent import encode
 from .environment import Config, SCENARIOS, ReplicaEnv
+from .experiments import decision_record
 from .policies import load_agent
 
 
@@ -43,23 +43,6 @@ class BranchRequest(BaseModel):
     horizon: int = Field(default=8, ge=1, le=30)
 
 
-def record_step(env, agent, seed):
-    observation = env.observe()
-    action = agent.act(observation)
-    values = agent.values(observation)
-    following, reward, terminated, truncated, info = env.step(action)
-    key = encode(observation)
-    tabular = agent.algorithm == 'q-learning'
-    return {
-        'schema_version': 1, 'policy': agent.algorithm, 'seed': seed, 'scenario': env.scenario,
-        'step': observation['step'], 'observation': observation, 'state_key': key,
-        'q_values': values, 'state_seen_in_training': key in agent.table if tabular else None,
-        'action_training_visits': list(agent.visits.get(key, [0, 0, 0])) if tabular else None,
-        'action': action, 'reward': reward, 'outcome': info, 'next_observation': following,
-        'terminated': terminated, 'truncated': truncated,
-    }
-
-
 @dataclass
 class Session:
     id: str
@@ -82,7 +65,14 @@ class Session:
             if self.env.step_index >= self.env.config.episode_steps:
                 raise HTTPException(409, 'Episode complete. Create a new session to reset.')
             self.last_snapshot = deepcopy(self.env)
-            row = record_step(self.env, self.agent, self.seed)
+            observation = self.env.observe()
+            action = self.agent.act(observation)
+            values = self.agent.values(observation)
+            row = decision_record(
+                agent=self.agent, policy=self.agent.algorithm, seed=self.seed,
+                scenario=self.env.scenario, observation=observation,
+                transition=self.env.step(action), values=values,
+            )
             self.records.append(row)
             self.updated = time.monotonic()
             return row

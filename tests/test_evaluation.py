@@ -4,6 +4,21 @@ from freshroute.experiments import bootstrap_interval, evaluate, percentile, rol
 
 
 class EvaluationTests(unittest.TestCase):
+    def test_control_records_do_not_inherit_learned_policy_metadata(self):
+        agent, _ = train(episodes=2, steps=20)
+        for policy in (agent.algorithm, 'nearest', 'leader', 'random'):
+            with self.subTest(policy=policy):
+                rows = rollout(agent, policy=policy)
+                for row in rows:
+                    self.assertEqual(row['policy'], policy)
+                    if policy == agent.algorithm:
+                        self.assertEqual(row['q_values'], agent.values(row['observation']))
+                        self.assertIsInstance(row['state_seen_in_training'], bool)
+                        self.assertEqual(len(row['action_training_visits']), 3)
+                    else:
+                        for field in ('q_values', 'state_seen_in_training', 'action_training_visits'):
+                            self.assertIsNone(row[field])
+
     def test_percentiles_and_denominators(self):
         agent, _ = train(episodes=2, steps=20)
         rows = rollout(agent)

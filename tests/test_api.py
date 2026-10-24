@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import unittest
 
 
@@ -40,6 +41,20 @@ class APITests(unittest.TestCase):
         for _ in range(160):
             self.assertEqual(self.client.post(f'/api/sessions/{session}/step').status_code, 200)
         self.assertEqual(self.client.post(f'/api/sessions/{session}/step').status_code, 409)
+
+    @unittest.skipUnless(importlib.util.find_spec('stable_baselines3'), 'install the rl extra')
+    def test_dqn_api_reproduces_the_complete_frozen_replay(self):
+        from fastapi.testclient import TestClient
+        from freshroute.api import ROOT, create_app
+        root = ROOT / 'artifacts/releases'
+        self.client = TestClient(create_app(models={'dqn': root / 'dqn'}))
+        session = self.create(model_id='dqn', scenario='regional-outage')
+        expected = [json.loads(line) for line in (root / 'decisions.jsonl').read_text().splitlines()]
+        for row in expected:
+            with self.subTest(step=row['step']):
+                response = self.client.post(f'/api/sessions/{session}/step')
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.json(), row)
 
     def test_faults_and_selected_decision_counterfactuals(self):
         session = self.create()

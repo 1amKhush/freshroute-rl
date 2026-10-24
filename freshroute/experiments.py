@@ -78,6 +78,21 @@ def policy_action(policy, observation, rng, agent):
     raise ValueError(f"unknown policy: {policy}")
 
 
+def decision_record(*, agent, policy, seed, scenario, observation, transition, values):
+    """Keep live sessions and offline rollouts on the same decision schema."""
+    following, reward, terminated, truncated, info = transition
+    key = encode(observation)
+    tabular = policy == 'q-learning'
+    return {
+        'schema_version': 1, 'policy': policy, 'seed': seed, 'scenario': scenario,
+        'step': observation['step'], 'observation': observation, 'state_key': key,
+        'q_values': values, 'state_seen_in_training': key in agent.table if tabular else None,
+        'action_training_visits': list(agent.visits.get(key, [0, 0, 0])) if tabular else None,
+        'action': info['action'], 'reward': reward, 'outcome': info,
+        'next_observation': following, 'terminated': terminated, 'truncated': truncated,
+    }
+
+
 def rollout(agent, *, policy=None, seed=100_000, scenario="balanced", config=None):
     policy = policy or agent.algorithm
     config = config or Config(**agent.metadata["config"])
@@ -87,19 +102,13 @@ def rollout(agent, *, policy=None, seed=100_000, scenario="balanced", config=Non
     records = []
     while True:
         action = policy_action(policy, observation, rng, agent)
-        following, reward, terminated, truncated, info = env.step(action)
-        key = encode(observation)
-        records.append({
-            "schema_version": 1, "policy": policy, "seed": seed, "scenario": scenario,
-            "step": len(records), "observation": observation, "state_key": key,
-            "q_values": agent.values(observation) if policy in ('q-learning', 'dqn') else None,
-            "state_seen_in_training": key in agent.table if policy == "q-learning" else None,
-            "action_training_visits": list(agent.visits.get(key, [0, 0, 0]))
-            if policy == "q-learning" else None,
-            "action": action, "reward": reward, "outcome": info,
-            "next_observation": following, "terminated": terminated, "truncated": truncated,
-        })
-        observation = following
+        transition = env.step(action)
+        values = agent.values(observation) if policy in ('q-learning', 'dqn') else None
+        records.append(decision_record(
+            agent=agent, policy=policy, seed=seed, scenario=scenario,
+            observation=observation, transition=transition, values=values,
+        ))
+        observation, _, terminated, truncated, _ = transition
         if terminated or truncated:
             return records
 
@@ -121,8 +130,6 @@ def summarize(records, *, breakdowns=True):
         "successful_responses": len(successes),
         "mean_reward": statistics.fmean(row["reward"] for row in records),
         "mean_response_ms_including_failures": statistics.fmean(row["response_ms"] for row in outcomes),
-        "p95_success_response_ms": success_latencies[max(0, (95 * len(success_latencies) + 99) // 100 - 1)]
-        if successes else None,
         "availability_rate": len(successes) / count,
         "sla_rate": sum(row["sla_met"] for row in outcomes) / count,
         "freshness_violation_rate_among_responses": sum(row["freshness_violation"] for row in successes)

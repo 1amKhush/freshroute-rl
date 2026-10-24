@@ -30,20 +30,21 @@ export function parseTrace(text: string): Decision[] {
     if (row.q_values !== null && (!Array.isArray(row.q_values) || row.q_values.length !== 3 || !row.q_values.every(finite))) {
       throw new Error(`Invalid action values at line ${index + 1}.`)
     }
-    if (!finite(row.outcome.response_ms) || !object(row.outcome.reward_terms)
-      || !['latency', 'freshness', 'failure'].every(key => finite((row.outcome as Record<string, unknown>).reward_terms && (row.outcome as {reward_terms: Record<string, unknown>}).reward_terms[key]))) {
+    const outcome = row.outcome
+    const terms = outcome.reward_terms
+    if (!finite(outcome.response_ms) || !object(terms)
+      || !finite(terms.latency) || !finite(terms.freshness) || !finite(terms.failure)) {
       throw new Error(`Invalid reward or response at line ${index + 1}.`)
     }
     if (typeof row.policy !== 'string' || typeof row.scenario !== 'string' || !Number.isInteger(row.seed)
-      || !['transport_ok', 'unavailable', 'timeout', 'freshness_violation', 'sla_met'].every(key => typeof (row.outcome as Record<string, unknown>)[key] === 'boolean')
-      || ![row.outcome.staleness_ms, row.outcome.version_lag].every(value => value === null || finite(value))
+      || !['transport_ok', 'unavailable', 'timeout', 'freshness_violation', 'sla_met'].every(key => typeof outcome[key] === 'boolean')
+      || ![outcome.staleness_ms, outcome.version_lag].every(value => value === null || finite(value))
       || ![row.terminated, row.truncated].every(value => typeof value === 'boolean')
       || (row.state_seen_in_training !== null && typeof row.state_seen_in_training !== 'boolean')
       || (row.action_training_visits !== null && (!Array.isArray(row.action_training_visits)
           || row.action_training_visits.length !== 3 || !row.action_training_visits.every(value => Number.isInteger(value) && value >= 0)))) {
       throw new Error(`Invalid decision outcome or training coverage at line ${index + 1}.`)
     }
-    const terms = row.outcome.reward_terms as Record<string, number>
     if (Math.abs(terms.latency + terms.freshness + terms.failure - row.reward) > 1e-6) {
       throw new Error(`Reward terms do not sum to the recorded reward at line ${index + 1}.`)
     }
