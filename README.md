@@ -226,6 +226,7 @@ freshroute-rl/
 
 | Guide | What you will find |
 | :--- | :--- |
+| [Two-page report: PDF](docs/descriptive-report.pdf) · [LaTeX source](docs/descriptive-report.tex) | Submission report with the RL formulation and evaluation graphs |
 | [Methods and results](docs/report.md) | Environment, algorithms, controls, ablations, and evaluation |
 | [Demo guide](docs/demo-guide.md) | A five-minute walkthrough for presenting the project |
 | [Visualization guide](docs/visualization.md) | Animation semantics, timing, accessibility, and data sources |
@@ -234,6 +235,8 @@ freshroute-rl/
 | [RL training](docs/rl-training.md) | Training configuration, model artifacts, and reproduction |
 | [Verification record](docs/validation.md) | Executed checks, reproducibility evidence, and limitations |
 | [Implementation plan](docs/implementation-plan.md) · [Commit record](docs/commit-plan.md) | Original project plan and development milestones |
+
+The LaTeX report is self-contained: open it in Overleaf with pdfLaTeX; no image uploads are needed. The [commit record](docs/commit-plan.md) maps current snapshots to original source revisions and explains the reconstructed timeline. Optional history tools are documented in the [history editor guide](docs/edit-history.md) and [demonstration timeline guide](docs/reconstructed-timeline.md).
 
 ## Team
 

@@ -1,6 +1,6 @@
 # FreshRoute RL implementation plan
 
-> Execution update: the 16 structured implementation units now have real commits, including DQN, the web laboratory, live faults, counterfactuals, and a frozen test. This document preserves the original design plan below. Current scope, fixed 50,000-step-per-model study, evidence, and remaining extensions are recorded in [the report](report.md) and [commit record](commit-plan.md). Team/instructor approval remains a human step.
+> Execution update: the 16 structured implementation units now have preserved source snapshots, including DQN, the web laboratory, live faults, counterfactuals, and a frozen test. This document preserves the original design plan below. Current scope, fixed 50,000-step-per-model study, evidence, and remaining extensions are recorded in [the report](report.md) and [commit record](commit-plan.md). Team/instructor approval remains a human step.
 
 ## 1. Target and present status
 

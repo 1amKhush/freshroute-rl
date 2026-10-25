@@ -15,7 +15,7 @@ Freshness is committed-versus-applied timestamp lag, not time since the last wri
 - Five full-agent training seeds: 7, 23, 47, 71, 97. Three seeds per ablation: 7, 23, 47. Each model used 50000 interactions, totaling 700000.
 - Ablations: remove freshness/replay channels; remove queue/replay-delay channels; independently train gamma zero. All preserve the original environment/reward definition.
 
-The 10000-step CPU trial took about 3.45 seconds on this execution host. The 50000-step setting was used for the initial study; the longer 250000-step setting in the original plan was not run. Neither budget establishes convergence. Each checkpoint metadata file preserves actual wall time, package versions, source fingerprint, and model hash. Training sources are at commit `54bb60b`; later API/fault additions preserve the frozen no-fault replay.
+The 10000-step CPU trial took about 3.45 seconds on this execution host. The 50000-step setting was used for the initial study; the longer 250000-step setting in the original plan was not run. Neither budget establishes convergence. Each checkpoint metadata file preserves actual wall time, package versions, source fingerprint, and model hash. Training sources are preserved at snapshot `4a755e6` (original revision `54bb60b` in its commit body); later API/fault additions preserve the frozen no-fault replay.
 
 ## Selection and evaluation
 
@@ -85,7 +85,7 @@ Reports ending in `.json.gz` are standard gzip-compressed JSON and retain all pe
 
 There is no real database benchmark, delayed/noisy telemetry study, mid-flight failure model, hard consistency enforcement, leader election, or out-of-distribution qualification. Reward-weight sweeps, longer training, session minimum-version constraints, hedged strategies, and PostgreSQL validation remain extensions.
 
-Team identities/roles, instructor approval/submission, and the final narrated presentation are still human coursework steps. The repository supplies runnable code, trained agents, experiment evidence, screenshots, and a demo script; it does not claim those submissions happened.
+Team names and roll numbers appear in the [README](../README.md) and [two-page report](descriptive-report.pdf). Speaking roles, instructor approval/submission, and the final narrated presentation are still human coursework steps. The repository supplies runnable code, trained agents, experiment evidence, screenshots, and a demo script; it does not claim those submissions happened.
 
 ## References
 
