@@ -33,6 +33,7 @@ export function parseTrace(text: string): Decision[] {
     const outcome = row.outcome
     const terms = outcome.reward_terms
     if (!finite(outcome.response_ms) || !object(terms)
+      || Object.keys(terms).length !== 3
       || !finite(terms.latency) || !finite(terms.freshness) || !finite(terms.failure)) {
       throw new Error(`Invalid reward or response at line ${index + 1}.`)
     }

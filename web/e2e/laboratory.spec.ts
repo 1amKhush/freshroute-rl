@@ -30,6 +30,7 @@ test('replay controls preserve actual decision values and stop at the end', asyn
 })
 
 test('invalid trace is rejected and mobile layout remains usable', async ({ page }) => {
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message))
   await page.setViewportSize({ width: 390, height: 844 }); await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/')
   await expect(page.locator('.step-label')).toHaveText('#001')
@@ -39,6 +40,8 @@ test('invalid trace is rejected and mobile layout remains usable', async ({ page
     { ...first, q_values: [0, 1] },
     { ...first, outcome: { ...first.outcome, reward_terms: { ...first.outcome.reward_terms, latency: 'invalid' } } },
     { ...first, outcome: { ...first.outcome, reward_terms: { ...first.outcome.reward_terms, failure: -1 } } },
+    { ...first, outcome: { ...first.outcome, reward_terms: { ...first.outcome.reward_terms, extra: 'invalid' } } },
+    { ...first, outcome: { ...first.outcome, reward_terms: { ...first.outcome.reward_terms, extra: -1 } } },
     { ...first, outcome: { ...first.outcome, transport_ok: 'yes' } },
   ]
   for (const row of invalid) {
@@ -51,6 +54,39 @@ test('invalid trace is rejected and mobile layout remains usable', async ({ page
   await expect(page.getByRole('alert')).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Next decision' })).toBeDisabled()
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy()
+  expect(errors).toEqual([])
+})
+
+test('leaving during session creation deletes the abandoned server session', async ({ page, request }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Live laboratory' }).click()
+  let release!: () => void
+  let capture!: (id: string) => void
+  const heldResponse = new Promise<void>(resolve => { release = resolve })
+  const created = new Promise<string>(resolve => { capture = resolve })
+  let sessionId: string | undefined
+  let stepRequests = 0
+  await page.route('**/api/sessions/*/step', route => { stepRequests++; return route.continue() })
+  await page.route('**/api/sessions', async route => {
+    const response = await route.fetch()
+    sessionId = (await response.json()).id
+    capture(sessionId!)
+    await heldResponse
+    await route.fulfill({ response })
+  })
+  try {
+    await page.getByRole('button', { name: 'Start session' }).click()
+    await created
+    await page.getByRole('button', { name: 'Training & evaluation' }).click()
+    release()
+    await expect.poll(async () => (await request.get(`/api/sessions/${sessionId}/trace`)).status()).toBe(404)
+    expect(stepRequests).toBe(0)
+    await page.getByRole('button', { name: 'Live laboratory' }).click()
+    await expect(page.getByRole('button', { name: 'Start session' })).toBeEnabled()
+  } finally {
+    release()
+    if (sessionId) await request.delete(`/api/sessions/${sessionId}`)
+  }
 })
 
 test('live DQN routing, fault injection, and same-snapshot branches use the real API', async ({ page }) => {

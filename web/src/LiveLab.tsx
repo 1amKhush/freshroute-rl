@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { BranchResults, Inspector, LatencyChart, OutcomeCards, Topology } from './components'
 import { jsonRequest } from './data'
 import type { Counterfactual, Decision, Model, Session } from './types'
 import { regions } from './types'
 
 const post = (body: unknown): RequestInit => ({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+const deleteSession = (id: string) => { void fetch(`/api/sessions/${id}`, { method: 'DELETE' }).catch(() => {}) }
 
 export function LiveLab() {
   const [models, setModels] = useState<Model[]>([])
@@ -22,8 +23,21 @@ export function LiveLab() {
   const [duration, setDuration] = useState(20)
   const [value, setValue] = useState(100)
   const [branches, setBranches] = useState<Counterfactual | null>(null)
+  const mounted = useRef(false)
+  const sessionId = useRef<string | null>(null)
   const row = records.at(-1)
   const complete = !!row && (row.truncated || row.terminated)
+
+  const closeSession = useCallback(() => {
+    const id = sessionId.current
+    sessionId.current = null
+    if (id) deleteSession(id)
+  }, [])
+
+  useEffect(() => {
+    mounted.current = true
+    return () => { mounted.current = false; closeSession() }
+  }, [closeSession])
 
   useEffect(() => {
     let active = true
@@ -31,11 +45,6 @@ export function LiveLab() {
       .catch(() => { if (active) setError('The live laboratory is unavailable. Start the local server using the README instructions, then reopen this view.') })
     return () => { active = false }
   }, [])
-
-  useEffect(() => {
-    if (!session) return
-    return () => { void fetch(`/api/sessions/${session.id}`, { method: 'DELETE' }).catch(() => {}) }
-  }, [session])
 
   const step = useCallback(async (id: string) => {
     setBusy(true); setError(''); setBranches(null)
@@ -57,9 +66,12 @@ export function LiveLab() {
     setBusy(true); setRunning(false); setError(''); setBranches(null)
     try {
       const result = await jsonRequest<Session>('/api/sessions', post({ model_id: model, scenario, seed }))
+      if (!mounted.current) { deleteSession(result.id); return }
+      closeSession()
+      sessionId.current = result.id
       setSession(result); setRecords([]); await step(result.id)
-    } catch (error) { setError(String(error)) }
-    finally { setBusy(false) }
+    } catch (error) { if (mounted.current) setError(String(error)) }
+    finally { if (mounted.current) setBusy(false) }
   }
 
   async function inject() {
@@ -83,7 +95,7 @@ export function LiveLab() {
   return <>
     <form className="panel live-controls" onSubmit={event => { event.preventDefault(); void begin() }}>
       <div className="panel-heading"><div><p className="eyebrow">FROZEN POLICY · LIVE SIMULATOR</p><h2>Change conditions. Watch the policy respond.</h2></div><span className="tag">Isolated session</span></div>
-      <div className="live-form"><label>Model<select aria-label="Live model" value={model} disabled={!!session || busy} onChange={event => setModel(event.target.value)}>{models.map(model => <option value={model.id} key={model.id}>{model.label}</option>)}</select></label><label>Workload<select aria-label="Live workload" disabled={!!session || busy} value={scenario} onChange={event => setScenario(event.target.value)}>{['balanced', 'write-burst', 'regional-outage', 'traffic-shift'].map(value => <option key={value} value={value}>{value.replaceAll('-', ' ')}</option>)}</select></label><label>Workload seed<input aria-label="Live seed" type="number" min="100000" max="199999" required disabled={!!session || busy} value={seed} onChange={event => setSeed(Number(event.target.value))} /></label><button className="primary" disabled={busy || !models.length}>{session ? 'Reset session' : 'Start session'}</button>{session ? <button type="button" disabled={busy} onClick={() => { setRunning(false); setSession(null); setRecords([]); setBranches(null); setNotice('') }}>End session</button> : null}</div>
+      <div className="live-form"><label>Model<select aria-label="Live model" value={model} disabled={!!session || busy} onChange={event => setModel(event.target.value)}>{models.map(model => <option value={model.id} key={model.id}>{model.label}</option>)}</select></label><label>Workload<select aria-label="Live workload" disabled={!!session || busy} value={scenario} onChange={event => setScenario(event.target.value)}>{['balanced', 'write-burst', 'regional-outage', 'traffic-shift'].map(value => <option key={value} value={value}>{value.replaceAll('-', ' ')}</option>)}</select></label><label>Workload seed<input aria-label="Live seed" type="number" min="100000" max="199999" required disabled={!!session || busy} value={seed} onChange={event => setSeed(Number(event.target.value))} /></label><button className="primary" disabled={busy || !models.length}>{session ? 'Reset session' : 'Start session'}</button>{session ? <button type="button" disabled={busy} onClick={() => { setRunning(false); closeSession(); setSession(null); setRecords([]); setBranches(null); setNotice('') }}>End session</button> : null}</div>
     </form>
     {error ? <p className="error" role="alert">{error}</p> : null}{notice ? <p className="notice" role="status">{notice}</p> : null}
     {session ? <><div className="live-actions"><button className="primary" disabled={busy || complete} onClick={() => { void step(session.id) }}>Step live request</button><button disabled={complete} onClick={() => setRunning(value => !value)}>{running ? 'Pause live' : 'Run live'}</button><span className="tag mono">seed {session.seed} · {records.length} / 160 requests</span><a href={`/api/sessions/${session.id}/trace`} download="decisions.jsonl">Export trace</a><a href={`/api/sessions/${session.id}/manifest`} download="manifest.json">Manifest</a></div>
